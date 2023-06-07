@@ -3,8 +3,9 @@
 <%@ page import="com.example.proyecto_iweb.models.beans.Cuentas" %>
 <%@ page import="com.example.proyecto_iweb.models.beans.ComprasVentas" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    ArrayList<ComprasVentas> listaNotificaciones = (ArrayList<ComprasVentas>) request.getAttribute("lista");
+
+<%   ArrayList<ComprasVentas> listaVendidos = (ArrayList<ComprasVentas>) request.getAttribute("lista2");
+    ArrayList<ComprasVentas> listaNotificaciones = (ArrayList<ComprasVentas>) request.getAttribute("lista4");
     ArrayList<Cuentas> listaPerfil = (ArrayList<Cuentas>) request.getAttribute("perfil");
 
 %>
@@ -45,8 +46,8 @@
 <header id="header" class="header fixed-top d-flex align-items-center bg-primary">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="#" class="logo d-flex align-items-center">
-            <img src="/logoUsuario.png" alt="">
+        <a href="<%=request.getContextPath()%>/JuegosServlet?a=listar" class="logo d-flex align-items-center">
+            <img src="logoUsuario.png" alt="">
             <span class="d-none d-lg-block text-light">JA-VAGOS</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn text-light"></i>
@@ -70,26 +71,22 @@
             </li>
 
             <!-- ICONO DE TIENDA Y NOTIFICACIÓN-->
-            <li class="nav-item dropdown">
-
-                <a class="nav-link nav-icon" href="#">
+            <li class="nav-item">
+                <a class="nav-link nav-icon" href="carrito.jsp">
                     <i class="bi bi-cart text-light"></i>
-                    <span class="badge bg-success badge-number">4</span>
+                    <span class="badge bg-success badge-number"></span>
                 </a>
-
-
             </li>
 
             <li class="nav-item dropdown">
-
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                     <i class="bi bi-chat-left-text text-light"></i>
-                    <span class="badge bg-danger badge-number">3</span>
-                </a>
+                    <span class="badge bg-danger badge-number"><%=listaNotificaciones.size()%></span>
+                </a><!-- End Messages Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                     <li class="dropdown-header">
-                        Tienes 3 mensajes nuevos ! ! !
+                        Tienes <%=listaNotificaciones.size()%> mensajes nuevos ! ! !
                         <!--
                         <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todo</span></a>
                         -->
@@ -99,12 +96,12 @@
                     </li>
 
                     <li class="dropdown-footer">
-                        <a href="#">Ver todo los mensajes</a>
+                        <a  href="<%=request.getContextPath()%>/JuegosServlet?a=listarNotificaciones">Ver todo los mensajes</a>
                     </li>
 
-                </ul><!-- End Messages Dropdown Items -->
+                </ul>
 
-            </li><!-- End Messages Nav -->
+            </li>
 
 
 
@@ -119,12 +116,12 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="/img/usuario/usuario1.webp" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2 text-light">A. Berlin</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2 text-light"><%for (Cuentas c : listaPerfil) {%>  <%=c.getNombre()%></span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>A. Berlin</h6>
+                        <h6><%=c.getNombre()%></h6>
                         <span>Usuario</span>
                     </li>
                     <li>
@@ -132,7 +129,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="miPerfilOficial.html">
+                        <a class="dropdown-item d-flex align-items-center" href="<%=request.getContextPath()%>/CuentasServlet?a=perfil&id=<%=c.getIdCuentas()%> <% } %>">
                             <i class="bi bi-person"></i>
                             <span>Mi Perfil</span>
                         </a>
@@ -179,14 +176,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="indexUsuarioOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/JuegosServlet?a=listar">
                 <i class="bi bi-grid"></i>
                 <span>Disponibles</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="postearUsuariosOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/JuegosServlet?a=listar1">
                 <i class="bi bi-arrow-up-square"></i>
                 <span>Postear</span>
             </a>
@@ -194,14 +191,14 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="vendidosUsuariosOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/JuegosServlet?a=vendidos">
                 <i class="bi bi-bag"></i>
                 <span>Vendidos</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="compradosUsuariosOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/JuegosServlet?a=comprados">
                 <i class="bi bi-shop"></i>
                 <span>Comprados</span>
             </a>
@@ -227,8 +224,9 @@
                     <h3>Notificaciones</h3>
                     <%for (ComprasVentas cv : listaNotificaciones){%>
                     <div class="alert alert-primary" role="alert">
-                       <h6><%=cv.getDescripcionJuego()%></h6>
-                       <h6><%=cv.getJuegos().getNombre()%></h6>
+                        <p class="fw-bold" ><%=cv.getJuegos().getNombre()%></p>
+                       <p><%=cv.getDescripcionJuego()%></p>
+
                     </div>
                     <%}%>
                 </div>

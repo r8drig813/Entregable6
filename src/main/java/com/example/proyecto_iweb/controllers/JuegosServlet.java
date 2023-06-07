@@ -26,12 +26,14 @@ public class JuegosServlet extends HttpServlet {
             case "listar":
                 request.setAttribute("lista", juegosDaos.listarJuegos());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("usuario/indexUsuarioOficial.jsp");
                 requestDispatcher.forward(request, response);
                 break;
             case "listar1":
                 request.setAttribute("lista", juegosDaos.listarJuegos());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 RequestDispatcher requestDispatcher1 = request.getRequestDispatcher("usuario/postearUsuariosOficial.jsp");
                 requestDispatcher1.forward(request, response);
                 break;
@@ -39,55 +41,65 @@ public class JuegosServlet extends HttpServlet {
                 int juegoId = Integer.parseInt(request.getParameter("id"));
                 request.setAttribute("juegos", juegosDaos.listar(juegoId));
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("usuario/verJuego.jsp").forward(request, response);
                 break;
             case "nuevos":
                 request.setAttribute("nuevos", juegosDaos.listarnuevos());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("admin/juegosNuevosAdminOficial.jsp").forward(request, response);
                 break;
             case "existentes":
                 request.setAttribute("existentes", juegosDaos.listarexistentes());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("admin/juegosExistentesAdminOficial.jsp").forward(request, response);
                 break;
             case "carrito":
                 int juegoId1 = Integer.parseInt(request.getParameter("id"));
                 request.setAttribute("juegos", juegosDaos.listar(juegoId1));
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("usuario/carrito.jsp").forward(request, response);
                 break;
             case "listarcola":
                 request.setAttribute("lista", juegosDaos.listarCola());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 RequestDispatcher requestDispatcher2 = request.getRequestDispatcher("admin/juegosColaAdminOficial.jsp");
                 requestDispatcher2.forward(request, response);
                 break;
             case "vendidos":
                 request.setAttribute("lista2", juegosDaos.listarVendidos());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("usuario/vendidosUsuariosOficial.jsp").forward(request, response);
                 break;
             case "comprados":
                 request.setAttribute("lista3", juegosDaos.listarComprados());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("usuario/compradosUsuariosOficial.jsp").forward(request, response);
                 break;
             case  "perfil" :
                 String id = request.getParameter("id");
                 request.setAttribute("cuentas",cuentasDaos.listar(id));
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("usuario/miPerfilOficial.jsp").forward(request, response);
                 break;
 
             case "listarJuegos":
                 request.setAttribute("lista",juegosDaos.listarJuegosDisponibles());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("admin/indexAdmin.jsp").forward(request,response);
                 break;
             case "listarofertas":
                 request.setAttribute("ofertas",juegosDaos.listarOfertas());
                 request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("admin/ofertasJuegos.jsp").forward(request,response);
                 break;
             case "borrar":
@@ -96,7 +108,8 @@ public class JuegosServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/JuegosServlet");
                 break;
             case "listarNotificaciones":
-                request.setAttribute("lista",juegosDaos.listarNotificaciones());
+                request.setAttribute("lista2", juegosDaos.listarVendidos());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.setAttribute("perfil", cuentasDaos.perfil());
                 request.getRequestDispatcher("usuario/notificacionesUsuarioOficial.jsp").forward(request,response);
         }

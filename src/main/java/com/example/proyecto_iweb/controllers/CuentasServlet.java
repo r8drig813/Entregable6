@@ -26,6 +26,7 @@ public class CuentasServlet extends HttpServlet {
             case  "perfil" :
                 String id = request.getParameter("id");
                 request.setAttribute("cuentas",cuentasDaos.listar(id));
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("usuario/miPerfilOficial.jsp").forward(request, response);
                 break;
             case "listar":

@@ -7,10 +7,19 @@ public class ComprasVentas {
     private int fecha;
     private String descripcionEstado;
     private int cantidad;
+    private int idEstados;
     private Estados estados;
     private Juegos juegos;
     private int compraVenta;
     private String descripcionJuego;
+
+    public int getIdEstados() {
+        return idEstados;
+    }
+
+    public void setIdEstados(int idEstados) {
+        this.idEstados = idEstados;
+    }
 
     public int getFecha() {
         return fecha;

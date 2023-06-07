@@ -391,6 +391,8 @@ public class JuegosDaos {
                 comprasVentas.setDescripcionEstado(resultSet.getString(4));
                 comprasVentas.setCantidad(resultSet.getInt(5));
                 comprasVentas.setCompraVenta(resultSet.getInt(8));
+                comprasVentas.setDescripcionJuego(resultSet.getString(9));
+
                 Juegos juegos = new Juegos();
 
                 juegos.setIdJuegos(resultSet.getInt("j.idJuegos"));
@@ -460,6 +462,7 @@ public class JuegosDaos {
                 comprasVentas.setPrecioTotal(resultSet.getInt(2));
                 comprasVentas.setDescripcionEstado(resultSet.getString(4));
                 comprasVentas.setCantidad(resultSet.getInt(5));
+                comprasVentas.setIdEstados(resultSet.getInt(6));
                 comprasVentas.setCompraVenta(resultSet.getInt(8));
                 comprasVentas.setDescripcionJuego(resultSet.getString(9));
                 Juegos juegos = new Juegos();

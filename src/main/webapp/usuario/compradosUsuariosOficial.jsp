@@ -6,6 +6,8 @@
 <%
     ArrayList<ComprasVentas> listaComprados = (ArrayList<ComprasVentas>) request.getAttribute("lista3");
     ArrayList<Cuentas> listaPerfil = (ArrayList<Cuentas>) request.getAttribute("perfil");
+    ArrayList<ComprasVentas> listaNotificaciones = (ArrayList<ComprasVentas>) request.getAttribute("lista4");
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,21 +70,21 @@
 
             <!-- ICONO DE TIENDA Y NOTIFICACIÓN-->
             <li class="nav-item">
-                <a class="nav-link nav-icon" href="carritoUsuario.html">
+                <a class="nav-link nav-icon" href="carrito.jsp">
                     <i class="bi bi-cart text-light"></i>
-                    <span class="badge bg-success badge-number">4</span>
+                    <span class="badge bg-success badge-number"></span>
                 </a>
             </li>
 
             <li class="nav-item dropdown">
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                     <i class="bi bi-chat-left-text text-light"></i>
-                    <span class="badge bg-danger badge-number">3</span>
+                    <span class="badge bg-danger badge-number"><%=listaNotificaciones.size()%> </span>
                 </a><!-- End Messages Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                     <li class="dropdown-header">
-                        Tienes 3 mensajes nuevos ! ! !
+                        Tienes <%=listaNotificaciones.size()%> mensajes nuevos ! ! !
                         <!--
                         <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todo</span></a>
                         -->
@@ -91,50 +93,8 @@
                         <hr class="dropdown-divider">
                     </li>
 
-                    <li class="message-item">
-                        <a href="#">
-                            <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                            <div>
-                                <h4>Maria Hudson</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                <p>4 hrs. ago</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="message-item">
-                        <a href="#">
-                            <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                            <div>
-                                <h4>Anna Nelson</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                <p>6 hrs. ago</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="message-item">
-                        <a href="#">
-                            <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                            <div>
-                                <h4>David Muldon</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                <p>8 hrs. ago</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
                     <li class="dropdown-footer">
-                        <a href="/notificacionesUsuarioOficial.html">Ver todo los mensajes</a>
+                        <a  href="<%=request.getContextPath()%>/JuegosServlet?a=listarNotificaciones">Ver todo los mensajes</a>
                     </li>
 
                 </ul>
@@ -299,6 +259,7 @@
                                         <h6 class="card-title"> <%=cv.getJuegos().getNombre()%> </h6>
                                         <p class="card-text"> Descripcion : <%=cv.getDescripcionEstado()%></p>
                                         <p class="card-text"> Precio : $ <%=cv.getPrecioTotal()%> </p>
+                                        <p class="fw-bold"> Estado :  <%=cv.getDescripcionJuego()%> </p>
                                         <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=cv.getIdComprasVentas()%>" class="btn btn-dark">Ver juego</a>
                                     </div>
                                 </div>

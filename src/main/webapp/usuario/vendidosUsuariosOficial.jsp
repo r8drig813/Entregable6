@@ -6,7 +6,7 @@
 <%
     ArrayList<ComprasVentas> listaVendidos = (ArrayList<ComprasVentas>) request.getAttribute("lista2");
     ArrayList<Cuentas> listaPerfil = (ArrayList<Cuentas>) request.getAttribute("perfil");
-    ArrayList<ComprasVentas> list = (ArrayList<ComprasVentas>) request.getAttribute("lista2");
+    ArrayList<ComprasVentas> listaNotificaciones = (ArrayList<ComprasVentas>) request.getAttribute("lista4");
 
 %>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstxrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
@@ -46,7 +46,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center bg-primary">
     <div class="d-flex align-items-center justify-content-between">
         <a href="<%=request.getContextPath()%>/JuegosServlet?a=listar" class="logo d-flex align-items-center">
-            <img src="/logoUsuario.png" alt="">
+            <img src="logoUsuario.png" alt="">
             <span class="d-none d-lg-block text-light">JA-VAGOS</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn text-light"></i>
@@ -72,19 +72,19 @@
             <li class="nav-item">
                 <a class="nav-link nav-icon" href="carrito.jsp">
                     <i class="bi bi-cart text-light"></i>
-                    <span class="badge bg-success badge-number">4</span>
+                    <span class="badge bg-success badge-number"></span>
                 </a>
             </li>
 
             <li class="nav-item dropdown">
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                     <i class="bi bi-chat-left-text text-light"></i>
-                    <span class="badge bg-danger badge-number">3</span>
+                    <span class="badge bg-danger badge-number"><%=listaNotificaciones.size()%></span>
                 </a><!-- End Messages Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                     <li class="dropdown-header">
-                        Tienes 2 mensajes nuevos ! ! !
+                        Tienes <%=listaNotificaciones.size()%> mensajes nuevos ! ! !
                         <!--
                         <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todo</span></a>
                         -->
@@ -216,7 +216,7 @@
                         <th>Cantidad</th>
                         <th>Estado</th>
                         <th>Opciones</th>
-                        <th>Ver Juego</th>
+                        <th>Ver Formulario</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -229,7 +229,8 @@
                         <td><%=cv.getEstados().getNombreEstado()%>
                         </td>
                         <td> <% if (cv.getEstados().getNombreEstado().equals("pendiente")){ %>
-                            <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=cv.getIdComprasVentas()%>" class="btn btn-primary">Eliminar Propuesta</a>
+                            <a onclick="return confirm('Estas seguro de Eliminar :( ?')" class="btn btn-primary"
+                               href="<%=request.getContextPath()%>/JuegosServlet?a=borrar&id=<%=cv.getIdComprasVentas()%>">Eliminar Propuesta</a>
                             <%}%>
 
                             <% if (cv.getEstados().getNombreEstado().equals("aceptado")){ %>
@@ -238,19 +239,20 @@
                             <%}%>
                             <% if (cv.getEstados().getNombreEstado().equals("no aceptado")){ %>
                             <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=cv.getIdComprasVentas()%>" class="btn btn-dark">Modificar Precio</a>
-                            <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=cv.getIdComprasVentas()%>" class="btn btn-dark">Aceptar Precio</a>
-                            <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=cv.getIdComprasVentas()%>" class="btn btn-primary">Eliminar Propuesta</a>
+                            <a href="<%=request.getContextPath()%>/JuegosServlet?a=listarNotificaciones" class="btn btn-dark">Ver Precio Sugerido</a>
+                            <a onclick="return confirm('Estas seguro de Eliminar :( ?')" class="btn btn-primary"
+                               href="<%=request.getContextPath()%>/JuegosServlet?a=borrar&id=<%=cv.getIdComprasVentas()%>">Eliminar Propuesta</a>
                             <%}%>
 
                             <% if (cv.getEstados().getNombreEstado().equals("rechazado")){ %>
-                            <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=cv.getIdComprasVentas()%>" class="btn btn-dark">Ver Motivo</a>
+                            <a  href="<%=request.getContextPath()%>/JuegosServlet?a=listarNotificaciones" class="btn btn-dark" >Ver Motivo</a>
                             <a onclick="return confirm('Estas seguro de Eliminar :( ?')" class="btn btn-primary"
                                href="<%=request.getContextPath()%>/JuegosServlet?a=borrar&id=<%=cv.getIdComprasVentas()%>">Eliminar Propuesta</a>
                             <%}%>
 
                             <% if (cv.getEstados().getNombreEstado().equals("retirado")){ %>
                             <a onclick="return confirm('Estas seguro de Eliminar :( ?')" class="btn btn-primary"
-                               href="<%=request.getContextPath()%>/JuegosServlet?a=borrar&id=<%=cv.getIdComprasVentas()%>">Eliminar Juego</a>
+                               href="<%=request.getContextPath()%>/JuegosServlet?a=borrar&id=<%=cv.getIdComprasVentas()%>">Eliminar Propuesta</a>
                             <%}%>
 
                             <% if (cv.getEstados().getNombreEstado().equals("vendido")){ %>
