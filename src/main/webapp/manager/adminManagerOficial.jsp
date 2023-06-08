@@ -207,14 +207,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="indexManagerOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/usuarioManager">
                 <i class="bi bi-person-circle"></i>
                 <span>Usuarios</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link text-warning" href="#">
+            <a class="nav-link text-warning" href="<%=request.getContextPath()%>/empleados">
                 <i class="bi bi-person-bounding-box text-warning"></i>
                 <span>Administradores</span>
             </a>
@@ -222,7 +222,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="juegosManagerOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/JuegosManager">
                 <i class="bi bi-playstation"></i>
                 <span>Juegos</span>
             </a>
