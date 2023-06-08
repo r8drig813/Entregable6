@@ -118,46 +118,6 @@ public class CuentasDaos {
         return lista;
     }
 
-    // Listar los usuarios desde los admin
-    public ArrayList<Cuentas> compradosAndReservados(){
-        ArrayList<Cuentas> lista = new ArrayList<>();
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        String sql1 = "select * from cuentas where Roles_idRoles = 3";
-        String url = "jdbc:mysql://localhost:3306/mydb";
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
-             Statement stmt = connection.createStatement();
-             ResultSet resultSet = stmt.executeQuery(sql1)) {
-
-            while(resultSet.next()){
-                // Creación un nuevo objeto
-                Cuentas usuarioRandV = new Cuentas();
-
-                // Obtenemos los valores
-                usuarioRandV.setIdCuentas(resultSet.getInt(1));
-                usuarioRandV.setNombre(resultSet.getString(2));
-                usuarioRandV.setApellido(resultSet.getString(3));
-                usuarioRandV.setNickname(resultSet.getString(4));
-                usuarioRandV.setDirecion(resultSet.getString(5));
-                usuarioRandV.setCorreo(resultSet.getString(6));     // Correo
-                usuarioRandV.setContrasenia(resultSet.getString(7));
-                usuarioRandV.setFoto(resultSet.getBlob(8));
-                usuarioRandV.setDescripcion(resultSet.getString(9));
-                usuarioRandV.setDesabilitado(resultSet.getBoolean(10));
-                lista.add(usuarioRandV);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return lista;
-    }
 
     public Cuentas listar(String id) {
         Cuentas cuentas = null;
@@ -256,6 +216,52 @@ public class CuentasDaos {
         return lista;
     }
     /*-------------------ADMIN----------------------------*/
+
+    /*Listar usuarios para que administrador verifique la información*/
+    public ArrayList<Cuentas> compradosAndReservados(){
+        ArrayList<Cuentas> lista = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String sql1 = "select * from cuentas where Roles_idRoles = 3";
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = connection.createStatement();
+             ResultSet resultSet = stmt.executeQuery(sql1)) {
+
+            while(resultSet.next()){
+                // Creación un nuevo objeto
+                Cuentas usuarioRandV = new Cuentas();
+
+                // Obtenemos los valores
+                usuarioRandV.setIdCuentas(resultSet.getInt(1));
+                usuarioRandV.setNombre(resultSet.getString(2));
+                usuarioRandV.setApellido(resultSet.getString(3));
+                usuarioRandV.setNickname(resultSet.getString(4));
+                usuarioRandV.setDirecion(resultSet.getString(5));
+                usuarioRandV.setCorreo(resultSet.getString(6));     // Correo
+                usuarioRandV.setContrasenia(resultSet.getString(7));
+                usuarioRandV.setFoto(resultSet.getBlob(8));
+                usuarioRandV.setDescripcion(resultSet.getString(9));
+                usuarioRandV.setDesabilitado(resultSet.getBoolean(10));
+                lista.add(usuarioRandV);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return lista;
+    }
+
+
+
+
+
 
     /*-------------------MANAGER----------------------------*/
 

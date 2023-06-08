@@ -1,10 +1,10 @@
 
+
+
+<!--NO olvidar los enlaces-->
 <%@ page import="com.example.proyecto_iweb.models.beans.Juegos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.ArrayList" %>
-
-<% ArrayList<Juegos> ofertas = (ArrayList<Juegos>) request.getAttribute("ofertas"); %>
-
+<jsp:useBean id="juego" scope="request" type="Juegos"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -259,41 +259,40 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Juegos Ofertados</h1>
+        <h1>Editar juego</h1>
     </div>
 
     <div class="container">
+        <form method="POST" action="<%=request.getContextPath()%>/AdminJuegoServlet?p=a">
+            <input type="hidden" class="form-control" name="idJuegos" id="idJuegos"
+                   value="<%=juego.getIdJuegos()%>">
 
-        <table id="example" class="table table-striped" style="width:100%">
-            <thead>
-            <tr>
-                <th>Name de juego</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Descuento</th>
-                <th>Opciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for (Juegos o : ofertas) { %>
-            <tr>
-                <td><%=o.getNombre()%> </td>
-                <td><%=o.getPrecio()%></td>
-                <td><%=o.getStock()%></td>
-                <td><%=o.getDescuento()%></td>
-                <td>
-                    <div class="d-flex justify-content-center">
-                        <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=juego&id=<%=o.getIdJuegos()%>" class="btn btn-primary m-1">Ver juego</a>
-                        <a onclick="return confirm('¿Esta seguro de eliminar esta oferta?')" class="btn btn-danger m-1"
-                           href="<%=request.getContextPath()%>/AdminJuegoServlet?a=eliminarOferta&id=<%=o.getIdJuegos()%>">Eliminar oferta</a>
-                    </div>
-                </td>
-            </tr>
-            <% } %>
+            <div class="mb-3">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" value="<%=juego.getNombre()%>">
+            </div>
 
-            </tbody>
+            <div class="mb-3">
+                <label for="descripcion">Descripción</label>
+                <input type="text" class="form-control" name="descripcion" id="descripcion" value="<%=juego.getDescripcion()%>">
+            </div>
 
-        </table>
+            <div class="mb-3">
+                <label for="precio">Precio</label>
+                <input type="text" class="form-control" name="precio" id="precio" value="<%=juego.getPrecio()%>">
+            </div>
+
+
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Subir imagen</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+
+
+            <a class="btn btn-danger" href="<%=request.getContextPath()%>/AdminJuegoServlet">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
     </div>
 
 </main>

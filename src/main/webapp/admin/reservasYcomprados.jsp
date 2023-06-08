@@ -202,15 +202,15 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link text-danger" href="#">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet">
                 <i class="bi bi-grid text-danger"></i>
                 <span>Disponibles</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="reservasYcompradosAdminOficial.html">
-                <i class="bi bi-arrow-up-square"></i>
+            <a class="nav-link text-danger" href="#">
+                <i class="bi bi-arrow-up-square text-danger"></i>
                 <span>Reservas y juegos comprados</span>
             </a>
         </li>
@@ -218,7 +218,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="ofertasAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet?a=Ofertas">
                 <i class="bi bi-exclamation-square"></i>
                 <span>Ofertas</span>
             </a>
@@ -284,9 +284,11 @@
                 <td>Disponible</td>
                 <td>
                     <div class="d-flex justify-content-center">
-                        <a href="perfilUsuarioAdminOficial.html" class="btn btn-primary m-1">Ver perfil</a>
+                        <a href="<%=request.getContextPath()%>/AdminServlet?a=verPerfil" class="btn btn-primary m-1">Ver perfil</a>
                         <a href="#" class="btn btn-success m-1">Aceptar</a>
-                        <a href="#" class="btn btn-danger m-1">Rechazar</a>
+                        <a onclick="return confirm('¿Está seguro de rechazar al usuario: <%=u.getNombre()%> <%=u.getApellido()%>?')" class="btn btn-danger m-1"
+                           href="#">Rechazar</a>
+
                     </div>
                 </td>
             </tr>

@@ -243,78 +243,6 @@ public class JuegosDaos {
         return lista;
     }
 
-    // Listar los juegos disponibles del admin
-    public ArrayList<Juegos> listarJuegosDisponibles(){
-        ArrayList<Juegos> lista = new ArrayList<>();
-
-        // Definimos el Driver
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        String sql = "select * from juegos";
-        String url = "jdbc:mysql://localhost:3306/mydb";
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
-             Statement stmt = connection.createStatement();
-             ResultSet resultSet = stmt.executeQuery(sql)) {
-
-            while(resultSet.next()){
-                Juegos juegoDisponible = new Juegos();
-
-                // Obtenemos los valores
-                juegoDisponible.setIdJuegos(resultSet.getInt(1));
-                juegoDisponible.setNombre(resultSet.getString(2));
-                juegoDisponible.setDescripcion(resultSet.getString(3));
-                juegoDisponible.setPrecio(resultSet.getFloat(4));
-                juegoDisponible.setDescuento(resultSet.getInt(5));
-                juegoDisponible.setStock(resultSet.getInt(6));
-                juegoDisponible.setFoto(resultSet.getString(7));
-                juegoDisponible.setRetirar_juego(resultSet.getBoolean(8));
-                juegoDisponible.setJuego_sugerido(resultSet.getBoolean(9));
-                lista.add(juegoDisponible);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return lista;
-    }
-
-    // Listar las ofertas
-    public ArrayList<Juegos> listarOfertas(){
-        ArrayList<Juegos> ofertas = new ArrayList<>();
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        String sql1 = "select * from juegos where descuento > 0";
-        String url = "jdbc:mysql://localhost:3306/mydb";
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
-             Statement stmt = connection.createStatement();
-             ResultSet resultSet = stmt.executeQuery(sql1)) {
-
-            while(resultSet.next()){
-                Juegos juegoOferta = new Juegos();
-
-                // Obtenemos los valores
-                juegoOferta.setNombre(resultSet.getString(2));
-                juegoOferta.setFoto(resultSet.getString(7));
-                juegoOferta.setPrecio(resultSet.getInt(4));
-                juegoOferta.setDescuento(resultSet.getInt(5));
-                juegoOferta.setStock(resultSet.getInt(6));
-                ofertas.add(juegoOferta);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return ofertas;
-    }
 
     public ArrayList<ComprasVentas> listarVendidos() {
         ArrayList<Juegos> lista = new ArrayList<>();
@@ -512,6 +440,221 @@ public class JuegosDaos {
     //Lista de Ofertas
 
     /*-------------------ADMIN----------------------------*/
+
+    /*ROMMEL*/
+    // Listar todos los juegos disponibles del catalogo (Retorna una lista de Juegos)
+    public ArrayList<Juegos> listarJuegosDisponibles() {
+        ArrayList<Juegos> lista = new ArrayList<>();
+
+        // Definimos el Driver
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        String sql = "select * from juegos";
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = connection.createStatement();
+             ResultSet resultSet = stmt.executeQuery(sql)) {
+
+            while (resultSet.next()) {
+                Juegos juegoDisponible = new Juegos();
+
+                // Obtenemos los valores
+                juegoDisponible.setIdJuegos(resultSet.getInt(1));
+                juegoDisponible.setNombre(resultSet.getString(2));
+                juegoDisponible.setDescripcion(resultSet.getString(3));
+                juegoDisponible.setPrecio(resultSet.getFloat(4));
+                juegoDisponible.setDescuento(resultSet.getInt(5));
+                juegoDisponible.setStock(resultSet.getInt(6));
+                juegoDisponible.setFoto(resultSet.getString(7));
+                juegoDisponible.setRetirar_juego(resultSet.getBoolean(8));
+                juegoDisponible.setJuego_sugerido(resultSet.getBoolean(9));
+                lista.add(juegoDisponible);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return lista;
+    }
+
+    // Listar las ofertas (Retorna una lista de Juegos Ofertados)
+    public ArrayList<Juegos> listarOfertas() {
+        ArrayList<Juegos> ofertas = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        String sql1 = "select * from juegos where descuento != 0";
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = connection.createStatement();
+             ResultSet resultSet = stmt.executeQuery(sql1)) {
+
+            while (resultSet.next()) {
+                Juegos juegoOferta = new Juegos();
+
+                // Obtenemos los valores
+                juegoOferta.setIdJuegos(resultSet.getInt(1));
+                juegoOferta.setNombre(resultSet.getString(2));
+                juegoOferta.setPrecio(resultSet.getInt(4));
+                juegoOferta.setDescuento(resultSet.getInt(5));
+                juegoOferta.setStock(resultSet.getInt(6));
+                juegoOferta.setFoto(resultSet.getString(7));
+                ofertas.add(juegoOferta);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ofertas;
+    }
+
+
+    // Crear y guardar juego
+    public void guardar(Juegos juegos) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String sql = "INSERT INTO juegos (idJuegos,nombre,descripcion,precio,descuento,stock,foto) VALUES (?,?,?,?,?,?,?)";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1, juegos.getIdJuegos());
+            pstmt.setString(2, juegos.getNombre());
+            pstmt.setString(3, juegos.getDescripcion());
+            pstmt.setDouble(4, juegos.getPrecio());
+            pstmt.setDouble(5, juegos.getDescuento());
+            pstmt.setInt(6, juegos.getStock());
+            pstmt.setString(7, juegos.getFoto());
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    // Buscar el juego por el ID y obtener sus parametros
+    public Juegos listarJuegoAdmin(String id) {
+        Juegos juego = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String sql = "select * from juegos where idJuegos = ?";
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, id);
+
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    juego = new Juegos();
+                    juego.setIdJuegos(rs.getInt(1));
+                    juego.setNombre(rs.getString(2));
+                    juego.setDescripcion(rs.getString(3));
+                    juego.setPrecio(rs.getDouble(4));
+                    juego.setFoto(rs.getString(7));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return juego;
+    }
+
+
+    // Editamos la información del juego (EDITAR-ACTUALIZAR)
+    public void editarJuego(Juegos juegos){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String sql = "UPDATE juegos SET nombre = ?,descripcion = ?,precio = ? WHERE idJuegos = ?";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, juegos.getNombre());
+            pstmt.setString(2, juegos.getDescripcion());
+            pstmt.setDouble(3, juegos.getPrecio());
+            pstmt.setInt(4, juegos.getIdJuegos());
+
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    // Eliminar/Borrar de la lista de juegos disponibles
+    public void eliminarJuego(String id) {
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String sql = "DELETE FROM juegos WHERE idJuegos = ?";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, id);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    // Eliminar oferta (Actulizamos el valor de descuento=0)
+    public void eliminarOferta(String id){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String sql = "UPDATE juegos SET descuento = 0 WHERE idJuegos = ?";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, id);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     /*-------------------MANAGER----------------------------*/
 

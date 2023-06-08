@@ -1,10 +1,7 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.proyecto_iweb.models.beans.Cuentas" %>
+<!--NO olvidar los enlaces-->
+<%@ page import="com.example.proyecto_iweb.models.beans.Juegos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<Cuentas> listaAdmin = (ArrayList<Cuentas>) request.getAttribute("listaAdmin");
-%>
-<html lang="en">
-
+<html>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -17,7 +14,7 @@
   <!-- Estilos CSS -->
   <!--Importando estilos CSS-->
   <link rel="stylesheet" href="estilos/usuario/filtros.css">
-  <link rel="stylesheet" href="estilos/usuario.css">
+  <link rel="stylesheet" href="estilos/usuario/usuario.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -33,26 +30,32 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!--Estilos para pie de paginad de listas-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
 </head>
-
 <body>
-
-<header id="header" class="header fixed-top d-flex align-items-center bg-warning">
+<!-- ======= Cabecera ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center bg-danger">
 
   <div class="d-flex align-items-center justify-content-between">
-    <a href="indexManagerOficial.html" class="logo d-flex align-items-center">
-      <img src="img/sistema/logoUsuario.png" alt="">
-      <span class="d-none d-lg-block">JA-VAGOS</span>
+    <a href="#" class="logo d-flex align-items-center">
+      <img src="../img/sistema/logoUsuario.png" alt="">
+      <span class="d-none d-lg-block text-light">JA-VAGOS</span>
     </a>
-    <i class="bi bi-list toggle-sidebar-btn"></i>
-  </div><!-- End Logo -->
+    <i class="bi bi-list toggle-sidebar-btn text-light"></i>
+  </div>
 
-  <div class="search-bar">
+  <div class="search-bar mt-3">
     <form class="search-form d-flex align-items-center" method="POST" action="#">
       <input type="text" name="query" placeholder="Search" title="Enter search keyword">
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
-  </div><!-- End Search Bar -->
+  </div>
 
   <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">
@@ -66,16 +69,17 @@
 
       <!-- ICONO DE TIENDA Y NOTIFICACIÓN-->
 
+
       <li class="nav-item dropdown">
 
         <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-          <i class="bi bi-chat-left-text"></i>
-          <span class="badge bg-danger badge-number">3</span>
+          <i class="bi bi-chat-left-text text-light"></i>
+          <span class="badge bg-success badge-number">2</span>
         </a><!-- End Messages Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
           <li class="dropdown-header">
-            Tienes 3 mensajes nuevos ! ! !
+            Tienes 2 mensajes nuevos ! ! !
             <!--
             <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todo</span></a>
             -->
@@ -112,22 +116,12 @@
             <hr class="dropdown-divider">
           </li>
 
-          <li class="message-item">
-            <a href="#">
-              <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-              <div>
-                <h4>David Muldon</h4>
-                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                <p>8 hrs. ago</p>
-              </div>
-            </a>
-          </li>
           <li>
             <hr class="dropdown-divider">
           </li>
 
           <li class="dropdown-footer">
-            <a href="notificacionesManagerOficial.html">Ver todo los mensajes</a>
+            <a href="notificacionesAdminOficial.html">Ver todos los mensajes</a>
           </li>
 
         </ul><!-- End Messages Dropdown Items -->
@@ -146,21 +140,21 @@
       <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="/img/manager/manager1.jpg" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2">L. Stuardo</span>
-        </a><!-- End Profile Iamge Icon -->
+          <img src="../img/administrador/admin1.png" alt="Profile" class="rounded-circle">
+          <span class="d-none d-md-block dropdown-toggle ps-2 text-light">B. Chavez</span>
+        </a>
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>L. Stuardo</h6>
-            <span>Manager</span>
+            <h6>B. Chavez</h6>
+            <span>Administrador</span>
           </li>
           <li>
             <hr class="dropdown-divider">
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="miPerfilManagerOficial.html">
+            <a class="dropdown-item d-flex align-items-center" href="miPerfilAdminOficial.html">
               <i class="bi bi-person"></i>
               <span>Mi Perfil</span>
             </a>
@@ -170,7 +164,7 @@
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="miPerfilManagerOficial.html">
+            <a class="dropdown-item d-flex align-items-center" href="miPerfilAdminOficial.html">
               <i class="bi bi-gear"></i>
               <span>Configuración</span>
             </a>
@@ -193,143 +187,174 @@
     </ul>
   </nav><!-- End Icons Navigation -->
 
-</header><!-- End Header -->
+</header>
+<!-- End Cabecera -->
 
+<!--------------------------------------------------------------------------------------------------------------------->
 
-<!--ACABO EL HEADER-->
-
-
-<!-- ======= Sidebar ======= -->
+<!-- ======= Barra Lateral ======= -->
 <aside id="sidebar" class="sidebar">
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="indexManagerOficial.html">
-        <i class="bi bi-person-circle"></i>
-        <span>Usuarios</span>
+      <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet">
+        <i class="bi bi-grid"></i>
+        <span>Disponibles</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="adminManagerOficial.html">
-        <i class="bi bi-person-bounding-box"></i>
-        <span>Administradores</span>
+      <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminServlet">
+        <i class="bi bi-arrow-up-square"></i>
+        <span>Reservas y juegos comprados</span>
       </a>
-    </li><!-- End Profile Page Nav -->
+    </li>
+
 
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="juegosManagerOficial.html">
-        <i class="bi bi-playstation"></i>
-        <span>Juegos</span>
+      <a class="nav-link text-danger" href="#">
+        <i class="bi bi-exclamation-square text-danger"></i>
+        <span>Ofertas</span>
       </a>
-    </li><!-- End F.A.Q Page Nav -->
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bag"></i><span>Juegos vendidos</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="juegosNuevosAdminOficial.html">
+            <i class="bi bi-circle"></i><span>Nuevo</span>
+          </a>
+        </li>
+        <li>
+          <a href="juegosExistentesAdminOficial.html">
+            <i class="bi bi-circle"></i><span>Existente</span>
+          </a>
+        </li>
+        <li>
+          <a href="juegosColaAdminOficial.html">
+            <i class="bi bi-circle"></i><span>Cola</span>
+          </a>
+        </li>
+      </ul>
+    </li>
 
   </ul>
 
-</aside><!-- End Sidebar-->
+
+</aside>
+<!-- ======= End Barra Lateral ======= -->
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
 
 <main id="main" class="main">
-  <div class="container">
-    <div class="pagetitle">
-      <h1>Perfil del usuario <%=listaAdmin.get(0).getNickname()%> </h1>
-      <br>
-    </div><!-- End Page Title -->
 
-
-    <div class="row d-flex justify-content-center border border-primary rounded-4">
-
-      <div class="col-lg-4 m-4">
-        <!--VA IR LA FOTO-->
-        <div class="col-auto">
-          <div class="col-md-9 mx-auto">
-            <img src="/img/usuario/usuario1.webp" alt="" class="img-fluid mb-4 rounded-circle">
-          </div>
-
-
-          <h5 class="text-center">Datos del usuario</h5>
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>Nombre Completo </td>
-              <td><%=listaAdmin.get(0).getNombre() + " " + listaAdmin.get(0).getNombre() %></td>
-            </tr>
-            <tr>
-              <td>nickname</td>
-              <td><%=listaAdmin.get(0).getNickname()%></td>
-            </tr>
-            <tr>
-              <td>Direccion</td>
-              <td><%=listaAdmin.get(0).getDirecion()%></td>
-            </tr>
-            <tr>
-              <td>Correo</td>
-              <td><%=listaAdmin.get(0).getCorreo()%></td>
-            </tr>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-      <div class="col-lg-6 m-2">
-        <!--VA IR LA INFORMACIÓN-->
-        <div class="row-lg-6">
-          <h5 class="text-center">Estadisticas del usuario</h5>
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>Cant. juegos comprados</td>
-              <td>23</td>
-            </tr>
-            <tr>
-              <td>Cant. juegos vendidos</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>Cant. juegos pendientes</td>
-              <td>13</td>
-            </tr>
-            <tr>
-              <td>Dinero gastado</td>
-              <td>$230</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-
-
-        <div class="row">
-          <h5 class="text-center">Ubicación del usuario</h5>
-          <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7803.090718696196!2d-77.09065694650349!3d-12.074770906006872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1682624518105!5m2!1ses-419!2spe"
-                  width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <br>
-        </div>
-        <br>
-      </div>
-
-    </div>
-
+  <div class="pagetitle">
+    <h1>Crear juego</h1>
   </div>
-  <br>
-  <a href="indexManagerOficial.html" class="btn btn-danger">Regresar</a>
+
+  <div class="container">
+    <form method="POST" action="<%=request.getContextPath()%>/AdminJuegoServlet">
+
+      <div class="mb-3">
+        <label for="idJuegos">Juego ID</label>
+        <p>No permitido de 100-120</p>
+        <input type="text" class="form-control" name="idJuegos" id="idJuegos">
+      </div>
+
+      <div class="mb-3">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" name="nombre" id="nombre">
+      </div>
+
+      <div class="mb-3">
+        <label for="descripcion">Descripción</label>
+        <input type="text" class="form-control" name="descripcion" id="descripcion">
+      </div>
+
+      <div class="mb-3">
+        <label for="precio">Precio</label>
+        <input type="text" class="form-control" name="precio" id="precio">
+      </div>
+
+      <div class="mb-3">
+        <label for="descuento">Descuento</label>
+        <input type="text" class="form-control" name="descuento" id="descuento">
+      </div>
+
+      <div class="mb-3">
+        <label for="stock">Stock</label>
+        <input type="text" class="form-control" name="stock" id="stock">
+      </div>
+
+
+
+      <div class="input-group mb-3">
+        <label for="precio">Categoría</label>
+        <div class="col-12">
+          <select class="form-select" aria-label="Combo Box">
+            <option selected></option>
+            <option value="1">Aventura</option>
+            <option value="2">Acción</option>
+            <option value="3">Deporte</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <label for="precio">Consola</label>
+        <div class="col-12">
+          <select class="form-select" aria-label="Combo Box">
+            <option selected></option>
+            <option value="1">Nintento Switch</option>
+            <option value="2">Xbox X</option>
+            <option value="3">PlayStation 5</option>
+            <option value="4">PC</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="imagen">Dirección de imagen</label>
+        <h6>Sugerencia: img/juegos/nombre_juego.jpg (.png)</h6>
+        <input type="text" class="form-control" name="imagen" id="imagen">
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Subir imagen</label>
+        <input class="form-control" type="file" id="formFile">
+      </div>
+
+      <div class="mb-3">
+        <label for="retirar_juego">Retirar juego</label>
+        <h6>NOTA: Ingresar el valor de "0", caso contrario sera despedido.</h6>
+        <input type="text" class="form-control" name="retirar_juego" id="retirar_juego">
+      </div>
+
+
+      <div class="mb-3">
+        <label for="juego_sugerido">Juego sugerido</label>
+        <h6>NOTA: Ingresar el valor de "0", caso contrario sera despedido.</h6>
+        <input type="text" class="form-control" name="juego_sugerido" id="juego_sugerido">
+      </div>
+
+
+      <a class="btn btn-danger" href="<%=request.getContextPath()%>/AdminJuegoServlet">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+  </div>
+
 </main>
 
-<br><br><br>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
 
@@ -448,27 +473,14 @@
   <div class="credits">
     Designed by <a href="#">Ja-Vagos</a>
   </div>
-</footer><!-- End Footer -->
+</footer>
+<!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
-
-<!-- Vendor JS Files -->
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/chart.umd.js"></script>
-<script src="assets/vendor/echarts/echarts.min.js"></script>
-<script src="assets/vendor/quill/quill.min.js"></script>
-<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-
-
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
 <script src="assets/js/lista.js"></script>
-
 </body>
-
 </html>
