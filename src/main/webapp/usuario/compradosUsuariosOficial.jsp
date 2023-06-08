@@ -251,7 +251,7 @@
                             <div class="row g-0 rounded-4 border border-primary border-2 p-2">
                                 <!--Imagen del juego-->
                                 <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                    <img src="img/juegos/jaja.jpg" class="card-img-top" alt="...">
+                                    <img src="<%=cv.getJuegos().getFoto()%>" class="card-img-top" alt="...">
                                 </div>
                                 <!--Descripción del juego-->
                                 <div class="col-md-8">
@@ -260,7 +260,7 @@
                                         <p class="card-text"> Descripcion : <%=cv.getDescripcionEstado()%></p>
                                         <p class="card-text"> Precio : $ <%=cv.getPrecioTotal()%> </p>
                                         <p class="fw-bold"> Estado :  <%=cv.getDescripcionJuego()%> </p>
-                                        <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=cv.getIdComprasVentas()%>" class="btn btn-dark">Ver juego</a>
+                                        <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=cv.getJuegos().getIdJuegos()%>" class="btn btn-dark">Ver juego</a>
                                     </div>
                                 </div>
                             </div>

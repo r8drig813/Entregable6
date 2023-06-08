@@ -33,7 +33,7 @@ public class JuegosDaos {
                 juegos.setPrecio(resultSet.getDouble(4));
                 juegos.setDescuento(resultSet.getDouble(5));
                 juegos.setStock(resultSet.getInt(6));
-                juegos.setFoto(resultSet.getBlob(7));
+                juegos.setFoto(resultSet.getString(7));
                 juegos.setRetirar_juego(resultSet.getBoolean(8));
                 juegos.setJuego_sugerido(resultSet.getBoolean(9));
                 lista.add(juegos);
@@ -71,7 +71,7 @@ public class JuegosDaos {
                     juegos.setPrecio(rs.getDouble(4));
                     juegos.setDescuento(rs.getDouble(5));
                     juegos.setStock(rs.getInt(6));
-                    juegos.setFoto(rs.getBlob(7));
+                    juegos.setFoto(rs.getString(7));
                     juegos.setRetirar_juego(rs.getBoolean(8));
                     juegos.setJuego_sugerido(rs.getBoolean(9));
                 }
@@ -109,7 +109,7 @@ public class JuegosDaos {
                     juegos.setPrecio(resultSet.getDouble(4));
                     juegos.setDescuento(resultSet.getDouble(5));
                     juegos.setStock(resultSet.getInt(6));
-                    juegos.setFoto(resultSet.getBlob(7));
+                    juegos.setFoto(resultSet.getString(7));
                     juegos.setRetirar_juego(resultSet.getBoolean(8));
                     juegos.setJuego_sugerido(resultSet.getBoolean(9));
                     lista.add(juegos);
@@ -151,7 +151,7 @@ public class JuegosDaos {
                 juegos.setPrecio(resultSet.getDouble(4));
                 juegos.setDescuento(resultSet.getDouble(5));
                 juegos.setStock(resultSet.getInt(6));
-                juegos.setFoto(resultSet.getBlob(7));
+                juegos.setFoto(resultSet.getString(7));
                 juegos.setRetirar_juego(resultSet.getBoolean(8));
                 juegos.setJuego_sugerido(resultSet.getBoolean(9));
                 lista.add(juegos);
@@ -189,7 +189,7 @@ public class JuegosDaos {
                 juegos.setPrecio(resultSet.getDouble(4));
                 juegos.setDescuento(resultSet.getDouble(5));
                 juegos.setStock(resultSet.getInt(6));
-                juegos.setFoto(resultSet.getBlob(7));
+                juegos.setFoto(resultSet.getString(7));
                 juegos.setRetirar_juego(resultSet.getBoolean(8));
                 juegos.setJuego_sugerido(resultSet.getBoolean(9));
                 juegos.setExistentes(resultSet.getBoolean(10));
@@ -228,7 +228,7 @@ public class JuegosDaos {
                 juegos.setPrecio(resultSet.getDouble(4));
                 juegos.setDescuento(resultSet.getDouble(5));
                 juegos.setStock(resultSet.getInt(6));
-                juegos.setFoto(resultSet.getBlob(7));
+                juegos.setFoto(resultSet.getString(7));
                 juegos.setRetirar_juego(resultSet.getBoolean(8));
                 juegos.setJuego_sugerido(resultSet.getBoolean(9));
                 juegos.setExistentes(resultSet.getBoolean(10));
@@ -268,7 +268,7 @@ public class JuegosDaos {
                 juegoDisponible.setPrecio(resultSet.getFloat(4));
                 juegoDisponible.setDescuento(resultSet.getInt(5));
                 juegoDisponible.setStock(resultSet.getInt(6));
-                juegoDisponible.setFoto(resultSet.getBlob(7));
+                juegoDisponible.setFoto(resultSet.getString(7));
                 juegoDisponible.setRetirar_juego(resultSet.getBoolean(8));
                 juegoDisponible.setJuego_sugerido(resultSet.getBoolean(9));
                 lista.add(juegoDisponible);
@@ -397,6 +397,7 @@ public class JuegosDaos {
 
                 juegos.setIdJuegos(resultSet.getInt("j.idJuegos"));
                 juegos.setNombre(resultSet.getString("nombre"));
+                juegos.setFoto(resultSet.getString("foto"));
                 comprasVentas.setJuegos(juegos);
 
                 Estados estados = new Estados();
@@ -479,6 +480,8 @@ public class JuegosDaos {
 
         return lista;
     }
+
+
     /*-------------------ADMIN----------------------------*/
 
     /*-------------------MANAGER----------------------------*/

@@ -77,12 +77,12 @@
             <li class="nav-item dropdown">
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                     <i class="bi bi-chat-left-text text-light"></i>
-                    <span class="badge bg-danger badge-number"><%=listaNotificaciones.size()%></span>
+                    <span class="badge bg-danger badge-number">2</span>
                 </a><!-- End Messages Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                     <li class="dropdown-header">
-                        Tienes <%=listaNotificaciones.size()%> mensajes nuevos ! ! !
+                        Tienes 2 mensajes nuevos ! ! !
                         <!--
                         <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todo</span></a>
                         -->
@@ -241,7 +241,10 @@
                 <div class="col-4">
                     <div class="disponibleUsuario">
                         <div class="card" style="width: 18rem; height: 100%;">
-                            <img src="<%=j.getFoto()%>" class="card-img-top" alt="...">
+                            <div class="col-md-12 d-flex justify-content-center align-items-center">
+                                <img src="<%=j.getFoto()%>" class="card-img-top" alt="...">
+
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title"><%=j.getNombre()%></h5>
                                 <a href="<%=request.getContextPath()%>/JuegosServlet?a=verjuego&id=<%=j.getIdJuegos()%>" class="btn btn-dark">Ver juego</a>

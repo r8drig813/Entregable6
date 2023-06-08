@@ -67,12 +67,12 @@
       <li class="nav-item dropdown">
         <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
           <i class="bi bi-chat-left-text text-light"></i>
-          <span class="badge bg-danger badge-number"><%=listaNotificaciones.size()%></span>
+          <span class="badge bg-danger badge-number">2</span>
         </a><!-- End Messages Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
           <li class="dropdown-header">
-            Tienes <%=listaNotificaciones.size()%> mensajes nuevos ! ! !
+            Tienes 2 mensajes nuevos ! ! !
             <!--
             <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todo</span></a>
             -->

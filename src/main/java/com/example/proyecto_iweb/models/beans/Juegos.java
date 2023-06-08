@@ -10,7 +10,7 @@ public class Juegos {
      private double precio;
      private double descuento;
      private int stock;
-     private Blob foto;
+     private String foto;
      private boolean retirar_juego;
      private boolean juego_sugerido;
     private String estado;
@@ -81,11 +81,11 @@ public class Juegos {
         this.stock = stock;
     }
 
-    public Blob getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(Blob foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 
