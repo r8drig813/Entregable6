@@ -199,21 +199,21 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="indexAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet">
                 <i class="bi bi-grid"></i>
                 <span>Disponibles</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="reservasYcompradosAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminServlet">
                 <i class="bi bi-arrow-up-square"></i>
                 <span>Reservas y juegos comprados</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="ofertasAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet?a=Ofertas">
                 <i class="bi bi-exclamation-square"></i>
                 <span>Ofertas</span>
             </a>
@@ -225,17 +225,17 @@
             </a>
             <ul id="icons-nav" class="nav-content collapsed text-danger" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a class="" href="<%=request.getContextPath()%>/JuegosServlet?a=nuevos">
+                    <a class="" href="<%=request.getContextPath()%>/AdminJuegoServlet?a=nuevos">
                         <i class="bi bi-circle"></i><span>Nuevo</span>
                     </a>
                 </li>
                 <li>
-                    <a class="text-danger" href="<%=request.getContextPath()%>/JuegosServlet?a=existentes">
+                    <a class="text-danger" href="<%=request.getContextPath()%>/AdminJuegoServlet?a=existentes">
                         <i class="bi bi-circle text-danger"></i><span>Existente</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/JuegosServlet?a=listarcola">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=listarcola">
                         <i class="bi bi-circle"></i><span>Cola</span>
                     </a>
                 </li>
@@ -255,7 +255,7 @@
             <div class="card mb-10" style="max-width: 1500px;">
                 <div class="row g-0">
                     <div class="col-md-5">
-                        <img src="/img/juegos/juego1.jpg" class="img-fluid rounded-start" alt="...">
+                        <img src="<%=j.getFoto()%>" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">

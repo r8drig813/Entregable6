@@ -1,7 +1,9 @@
 package com.example.proyecto_iweb.controllers;
 
 import com.example.proyecto_iweb.models.beans.Juegos;
+import com.example.proyecto_iweb.models.daos.CuentasDaos;
 import com.example.proyecto_iweb.models.daos.JuegosDaos;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,6 +21,7 @@ public class AdminJuegoServlet extends HttpServlet {
         response.setContentType("text/html");
 
         JuegosDaos juegosDaos = new JuegosDaos();
+        CuentasDaos cuentasDaos = new CuentasDaos();
 
         String action = request.getParameter("a") == null ? "JuegosDisponibles" : request.getParameter("a");
 
@@ -60,10 +63,50 @@ public class AdminJuegoServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/AdminJuegoServlet");
                 break;
 
+                //Juegos Vendidos
             case "eliminarOferta":
                 String id3 = request.getParameter("id");
                 juegosDaos.eliminarOferta(id3);
                 response.sendRedirect(request.getContextPath() + "/AdminJuegoServlet?a=Ofertas");
+                break;
+
+            case "listarcola":
+                request.setAttribute("lista", juegosDaos.listarCola());
+                request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
+                RequestDispatcher requestDispatcher2 = request.getRequestDispatcher("admin/juegosColaAdminOficial.jsp");
+                requestDispatcher2.forward(request, response);
+                break;
+
+            case "nuevos":
+                request.setAttribute("nuevos", juegosDaos.listarnuevos());
+                request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
+                request.getRequestDispatcher("admin/juegosNuevosAdminOficial.jsp").forward(request, response);
+                break;
+            case "existentes":
+                request.setAttribute("existentes", juegosDaos.listarexistentes());
+                request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
+                request.getRequestDispatcher("admin/juegosExistentesAdminOficial.jsp").forward(request, response);
+                break;
+
+            case "cambiarestadoaceptar":
+                String id4 = request.getParameter("id");
+                juegosDaos.cambiarestadoaceptar(id4);
+                response.sendRedirect(request.getContextPath() + "/AdminJuegoServlet?a=listarcola");
+                break;
+
+            case "cambiarestadonoaceptar":
+                String id5 = request.getParameter("id");
+                juegosDaos.cambiarestadoaceptar(id5);
+                response.sendRedirect(request.getContextPath() + "/AdminJuegoServlet?a=listarcola");
+                break;
+
+            case "cambiarestadorechazar":
+                String id6 = request.getParameter("id");
+                juegosDaos.cambiarestadoaceptar(id6);
+                response.sendRedirect(request.getContextPath() + "/AdminJuegoServlet?a=listarcola");
                 break;
         }
 

@@ -654,6 +654,70 @@ public class JuegosDaos {
         }
     }
 
+    //
+    public void cambiarestadoaceptar(String id){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String sql = "UPDATE compras_ventas SET Estados_idEstados = 2 WHERE Juegos_idJuegos = ?";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, id);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void cambiarestadonoaceptar(String id){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String sql = "UPDATE compras_ventas SET Estados_idEstados = 3 WHERE Juegos_idJuegos = ?";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, id);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void cambiarestadorechazar(String id){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String sql = "UPDATE compras_ventas SET Estados_idEstados = 4 WHERE Juegos_idJuegos = ?";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, id);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
     /*-------------------MANAGER----------------------------*/

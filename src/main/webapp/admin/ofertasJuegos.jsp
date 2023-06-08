@@ -230,17 +230,17 @@
             </a>
             <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="juegosNuevosAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=nuevos">
                         <i class="bi bi-circle"></i><span>Nuevo</span>
                     </a>
                 </li>
                 <li>
-                    <a href="juegosExistentesAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=existentes">
                         <i class="bi bi-circle"></i><span>Existente</span>
                     </a>
                 </li>
                 <li>
-                    <a href="juegosColaAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=listarcola" class="text-danger">
                         <i class="bi bi-circle"></i><span>Cola</span>
                     </a>
                 </li>
