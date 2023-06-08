@@ -203,14 +203,15 @@ public class CuentasDaos {
         }
 
         String url = "jdbc:mysql://localhost:3306/mydb";
-        String sql = "UPDATE cuentas SET descripcion= ?,direcion = ?,correo = ? WHERE idCuentas = ?";
+        String sql = "UPDATE cuentas SET descripcion= ?,direcion = ?,correo = ?, contrasenia = ? WHERE idCuentas = ?";
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             pstmt.setString(1, cuentas.getDescripcion());
             pstmt.setString(2, cuentas.getDirecion());
             pstmt.setString(3,cuentas.getCorreo());
-            pstmt.setInt(4, cuentas.getIdCuentas());
+            pstmt.setString(4,cuentas.getCorreo());
+            pstmt.setInt(5, cuentas.getIdCuentas());
 
             pstmt.executeUpdate();
 

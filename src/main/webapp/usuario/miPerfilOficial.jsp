@@ -349,9 +349,9 @@
                 <form>
 
                   <div class="row mb-3">
-                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                    <label for="contrasenia" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="password" type="password" class="form-control" id="currentPassword">
+                      <input name="contrasenia" type="password" class="form-control" id="contrasenia" value="<%=cuentas.getContrasenia()%>">
                     </div>
                   </div>
 

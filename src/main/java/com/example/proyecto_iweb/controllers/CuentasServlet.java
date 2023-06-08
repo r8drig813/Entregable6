@@ -75,6 +75,7 @@ public class CuentasServlet extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         String direcion = request.getParameter("direcion");
         String correo = request.getParameter("correo");
+        String contrasenia = request.getParameter("contrasenia");
 
         try {
 
@@ -84,6 +85,7 @@ public class CuentasServlet extends HttpServlet {
             cuentas.setDescripcion(descripcion);
             cuentas.setDirecion(direcion);
             cuentas.setCorreo(correo);
+            cuentas.setContrasenia(contrasenia);
 
             return cuentas;
 
