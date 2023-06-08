@@ -44,18 +44,7 @@ public class JuegosServlet extends HttpServlet {
                 request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("usuario/verJuego.jsp").forward(request, response);
                 break;
-            case "nuevos":
-                request.setAttribute("nuevos", juegosDaos.listarnuevos());
-                request.setAttribute("perfil", cuentasDaos.perfil());
-                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
-                request.getRequestDispatcher("admin/juegosNuevosAdminOficial.jsp").forward(request, response);
-                break;
-            case "existentes":
-                request.setAttribute("existentes", juegosDaos.listarexistentes());
-                request.setAttribute("perfil", cuentasDaos.perfil());
-                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
-                request.getRequestDispatcher("admin/juegosExistentesAdminOficial.jsp").forward(request, response);
-                break;
+
             case "carrito":
                 int juegoId1 = Integer.parseInt(request.getParameter("id"));
                 request.setAttribute("juegos", juegosDaos.listar(juegoId1));
@@ -63,13 +52,7 @@ public class JuegosServlet extends HttpServlet {
                 request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.getRequestDispatcher("usuario/carrito.jsp").forward(request, response);
                 break;
-            case "listarcola":
-                request.setAttribute("lista", juegosDaos.listarCola());
-                request.setAttribute("perfil", cuentasDaos.perfil());
-                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
-                RequestDispatcher requestDispatcher2 = request.getRequestDispatcher("admin/juegosColaAdminOficial.jsp");
-                requestDispatcher2.forward(request, response);
-                break;
+
             case "vendidos":
                 request.setAttribute("lista2", juegosDaos.listarVendidos());
                 request.setAttribute("perfil", cuentasDaos.perfil());

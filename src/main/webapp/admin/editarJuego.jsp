@@ -1,10 +1,10 @@
 
-<%@ page import="com.example.proyecto_iweb.models.beans.Cuentas" %>
+
+
+<!--NO olvidar los enlaces-->
+<%@ page import="com.example.proyecto_iweb.models.beans.Juegos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.ArrayList" %>
-
-<% ArrayList<Cuentas> lista = (ArrayList<Cuentas>) request.getAttribute("lista"); %>
-
+<jsp:useBean id="juego" scope="request" type="Juegos"/>
 <html>
 <head>
     <meta charset="utf-8">
@@ -51,7 +51,6 @@
             <img src="../img/sistema/logoUsuario.png" alt="">
             <span class="d-none d-lg-block text-light">JA-VAGOS</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn text-light"></i>
     </div>
 
     <div class="search-bar mt-3">
@@ -203,14 +202,14 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet">
-                <i class="bi bi-grid text-danger"></i>
+                <i class="bi bi-grid"></i>
                 <span>Disponibles</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-danger" href="#">
-                <i class="bi bi-arrow-up-square text-danger"></i>
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminServlet">
+                <i class="bi bi-arrow-up-square"></i>
                 <span>Reservas y juegos comprados</span>
             </a>
         </li>
@@ -218,8 +217,8 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet?a=Ofertas">
-                <i class="bi bi-exclamation-square"></i>
+            <a class="nav-link text-danger" href="#">
+                <i class="bi bi-exclamation-square text-danger"></i>
                 <span>Ofertas</span>
             </a>
         </li>
@@ -230,17 +229,17 @@
             </a>
             <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=nuevos">
+                    <a href="juegosNuevosAdminOficial.html">
                         <i class="bi bi-circle"></i><span>Nuevo</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=existentes">
+                    <a href="juegosExistentesAdminOficial.html">
                         <i class="bi bi-circle"></i><span>Existente</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=listarcola" class="text-danger">
+                    <a href="juegosColaAdminOficial.html">
                         <i class="bi bi-circle"></i><span>Cola</span>
                     </a>
                 </li>
@@ -259,53 +258,40 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Juegos Disponibles</h1>
+        <h1>Editar juego</h1>
     </div>
 
     <div class="container">
-        <table id="example" class="table table-striped" style="width:100%">
-            <thead>
-            <tr>
-                <th>Name de usuario</th>
-                <th>Dirección</th>
-                <th>Nickname</th>
-                <th>Estado</th>
-                <th>Observación</th>
-                <th>Opciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for (Cuentas u : lista) { %>
-            <tr>
-                <td><%=u.getNombre()%> <%=u.getApellido()%></td>
-                <td><%=u.getDirecion()%></td>
-                <td><%=u.getNickname()%></td>
-                <td>Entregado</td>
-                <td>Disponible</td>
-                <td>
-                    <div class="d-flex justify-content-center">
-                        <a href="<%=request.getContextPath()%>/AdminServlet?a=verPerfil" class="btn btn-primary m-1">Ver perfil</a>
-                        <a href="#" class="btn btn-success m-1">Aceptar</a>
-                        <a onclick="return confirm('¿Está seguro de rechazar al usuario: <%=u.getNombre()%> <%=u.getApellido()%>?')" class="btn btn-danger m-1"
-                           href="#">Rechazar</a>
+        <form method="POST" action="<%=request.getContextPath()%>/AdminJuegoServlet?p=a">
+            <input type="hidden" class="form-control" name="idJuegos" id="idJuegos"
+                   value="<%=juego.getIdJuegos()%>">
 
-                    </div>
-                </td>
-            </tr>
-            <% } %>
+            <div class="mb-3">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" value="<%=juego.getNombre()%>">
+            </div>
 
-            </tbody>
-            <tfoot>
-            <tr>
-                <th>Name de usuario</th>
-                <th>Dirección</th>
-                <th>Nickname</th>
-                <th>Estado</th>
-                <th>Observación</th>
-                <th>Opciones</th>
-            </tr>
-            </tfoot>
-        </table>
+            <div class="mb-3">
+                <label for="descripcion">Descripción</label>
+                <input type="text" class="form-control" name="descripcion" id="descripcion" value="<%=juego.getDescripcion()%>">
+            </div>
+
+            <div class="mb-3">
+                <label for="precio">Precio</label>
+                <input type="text" class="form-control" name="precio" id="precio" value="<%=juego.getPrecio()%>">
+            </div>
+
+
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Subir imagen</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+
+
+            <a class="btn btn-danger" href="<%=request.getContextPath()%>/AdminJuegoServlet">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
     </div>
 
 </main>

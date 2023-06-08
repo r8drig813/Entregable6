@@ -202,14 +202,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link text-danger" href="#">
-                <i class="bi bi-grid text-danger"></i>
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet">
+                <i class="bi bi-grid"></i>
                 <span>Disponibles</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="reservasYcompradosAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminServlet">
                 <i class="bi bi-arrow-up-square"></i>
                 <span>Reservas y juegos comprados</span>
             </a>
@@ -218,8 +218,8 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="ofertasAdminOficial.html">
-                <i class="bi bi-exclamation-square"></i>
+            <a class="nav-link text-danger" href="#">
+                <i class="bi bi-exclamation-square text-danger"></i>
                 <span>Ofertas</span>
             </a>
         </li>
@@ -230,17 +230,17 @@
             </a>
             <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="juegosNuevosAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=nuevos">
                         <i class="bi bi-circle"></i><span>Nuevo</span>
                     </a>
                 </li>
                 <li>
-                    <a href="juegosExistentesAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=existentes">
                         <i class="bi bi-circle"></i><span>Existente</span>
                     </a>
                 </li>
                 <li>
-                    <a href="juegosColaAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=listarcola" class="text-danger">
                         <i class="bi bi-circle"></i><span>Cola</span>
                     </a>
                 </li>
@@ -283,8 +283,9 @@
                 <td><%=o.getDescuento()%></td>
                 <td>
                     <div class="d-flex justify-content-center">
-                        <a href="perfilUsuarioAdminOficial.html" class="btn btn-primary m-1">Ver juego</a>
-                        <a href="#" class="btn btn-danger m-1">Eliminar Oferta</a>
+                        <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=juego&id=<%=o.getIdJuegos()%>" class="btn btn-primary m-1">Ver juego</a>
+                        <a onclick="return confirm('¿Esta seguro de eliminar esta oferta?')" class="btn btn-danger m-1"
+                           href="<%=request.getContextPath()%>/AdminJuegoServlet?a=eliminarOferta&id=<%=o.getIdJuegos()%>">Eliminar oferta</a>
                     </div>
                 </td>
             </tr>

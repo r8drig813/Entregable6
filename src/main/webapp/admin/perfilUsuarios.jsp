@@ -1,11 +1,7 @@
 
-<%@ page import="com.example.proyecto_iweb.models.beans.Cuentas" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.ArrayList" %>
-
-<% ArrayList<Cuentas> lista = (ArrayList<Cuentas>) request.getAttribute("lista"); %>
-
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -13,12 +9,12 @@
     <title>JA-VAGOS</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <link rel="icon" href="img/sistema/pestania.png">
+    <link rel="icon" href="pestania.png">
 
     <!-- Estilos CSS -->
     <!--Importando estilos CSS-->
     <link rel="stylesheet" href="estilos/usuario/filtros.css">
-    <link rel="stylesheet" href="estilos/usuario/usuario.css">
+    <link rel="stylesheet" href="estilos/usuario.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -34,27 +30,20 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
-    <!--Estilos para pie de paginad de listas-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
 </head>
+
 <body>
-<!-- ======= Cabecera ======= -->
+<!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center bg-danger">
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">
-            <img src="../img/sistema/logoUsuario.png" alt="">
+            <img src="/logoUsuario.png" alt="">
             <span class="d-none d-lg-block text-light">JA-VAGOS</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn text-light"></i>
     </div>
 
-    <div class="search-bar mt-3">
+    <div class="search-bar">
         <form class="search-form d-flex align-items-center" method="POST" action="#">
             <input type="text" name="query" placeholder="Search" title="Enter search keyword">
             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
@@ -144,9 +133,9 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="../img/administrador/admin1.png" alt="Profile" class="rounded-circle">
+                    <img src="/img/administrador/admin1.png" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2 text-light">B. Chavez</span>
-                </a>
+                </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
@@ -191,26 +180,25 @@
         </ul>
     </nav><!-- End Icons Navigation -->
 
-</header>
-<!-- End Cabecera -->
+</header><!-- End Header -->
+<!--ACABO EL HEADER-->
 
-<!--------------------------------------------------------------------------------------------------------------------->
 
-<!-- ======= Barra Lateral ======= -->
+<!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet">
+            <a class="nav-link text-danger" href="#">
                 <i class="bi bi-grid text-danger"></i>
                 <span>Disponibles</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-danger" href="#">
-                <i class="bi bi-arrow-up-square text-danger"></i>
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminServlet">
+                <i class="bi bi-arrow-up-square"></i>
                 <span>Reservas y juegos comprados</span>
             </a>
         </li>
@@ -222,7 +210,7 @@
                 <i class="bi bi-exclamation-square"></i>
                 <span>Ofertas</span>
             </a>
-        </li>
+        </li><!-- End Contact Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
@@ -230,89 +218,123 @@
             </a>
             <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=nuevos">
+                    <a href="juegosNuevosAdminOficial.html">
                         <i class="bi bi-circle"></i><span>Nuevo</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=existentes">
+                    <a href="juegosExistentesAdminOficial.html">
                         <i class="bi bi-circle"></i><span>Existente</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=listarcola" class="text-danger">
+                    <a href="juegosColaAdminOficial.html">
                         <i class="bi bi-circle"></i><span>Cola</span>
                     </a>
                 </li>
             </ul>
-        </li>
+        </li><!-- End Icons Nav -->
 
     </ul>
 
 
-</aside>
-<!-- ======= End Barra Lateral ======= -->
-
-<!--------------------------------------------------------------------------------------------------------------------->
+</aside><!-- End Sidebar-->
 
 
 <main id="main" class="main">
+    <div class="col-md-1"></div>
 
-    <div class="pagetitle">
-        <h1>Juegos Disponibles</h1>
+    <div class="col-md-10 row d-flex justify-content-center border border-primary rounded-4">
+
+        <div class="col-lg-4 m-4">
+            <!--VA IR LA FOTO-->
+            <div class="col-auto">
+                <div class="col-md-9 mx-auto">
+                    <img src="user.png" alt="" class="img-fluid mb-4">
+                </div>
+
+
+                <h5 class="text-center">Datos del usuario</h5>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>Nombre completo</td>
+                    </tr>
+                    <tr>
+                        <td>Direccion</td>
+                        <td>Av. Universitaria 1919</td>
+                    </tr>
+                    <tr>
+                        <td>Correo</td>
+                        <td>Va_vagos@pucp.edu.pe</td>
+                    </tr>
+                    <tr>
+                        <td>Celular</td>
+                        <td>987654321</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 m-2">
+            <!--VA IR LA INFORMACIÓN-->
+            <div class="row-lg-6">
+                <h5 class="text-center">Estadisticas del usuario</h5>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Cant. juegos comprados</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>Cant. juegos vendidos</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Cant. juegos pendientes</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>Dinero gastado</td>
+                        <td>$230</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="row">
+                <h5 class="text-center">Ubicación del usuario</h5>
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7803.090718696196!2d-77.09065694650349!3d-12.074770906006872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1682624518105!5m2!1ses-419!2spe"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <br>
+            </div>
+            <br>
+        </div>
+
     </div>
 
-    <div class="container">
-        <table id="example" class="table table-striped" style="width:100%">
-            <thead>
-            <tr>
-                <th>Name de usuario</th>
-                <th>Dirección</th>
-                <th>Nickname</th>
-                <th>Estado</th>
-                <th>Observación</th>
-                <th>Opciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for (Cuentas u : lista) { %>
-            <tr>
-                <td><%=u.getNombre()%> <%=u.getApellido()%></td>
-                <td><%=u.getDirecion()%></td>
-                <td><%=u.getNickname()%></td>
-                <td>Entregado</td>
-                <td>Disponible</td>
-                <td>
-                    <div class="d-flex justify-content-center">
-                        <a href="<%=request.getContextPath()%>/AdminServlet?a=verPerfil" class="btn btn-primary m-1">Ver perfil</a>
-                        <a href="#" class="btn btn-success m-1">Aceptar</a>
-                        <a onclick="return confirm('¿Está seguro de rechazar al usuario: <%=u.getNombre()%> <%=u.getApellido()%>?')" class="btn btn-danger m-1"
-                           href="#">Rechazar</a>
-
-                    </div>
-                </td>
-            </tr>
-            <% } %>
-
-            </tbody>
-            <tfoot>
-            <tr>
-                <th>Name de usuario</th>
-                <th>Dirección</th>
-                <th>Nickname</th>
-                <th>Estado</th>
-                <th>Observación</th>
-                <th>Opciones</th>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
+    <div class="col-md-1"></div>
+    <br>
+    <a href="<%=request.getContextPath()%>/AdminServlet" class="btn btn-danger">Regresar</a>
 
 </main>
 
-
-
-<!--------------------------------------------------------------------------------------------------------------------->
 
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
@@ -432,14 +454,15 @@
     <div class="credits">
         Designed by <a href="#">Ja-Vagos</a>
     </div>
-</footer>
-<!-- End Footer -->
+</footer><!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
+
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-<script src="assets/js/lista.js"></script>
+
+
 </body>
 </html>

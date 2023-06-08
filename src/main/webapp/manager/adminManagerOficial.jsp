@@ -1,8 +1,11 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyecto_iweb.models.beans.EmpleadosTabla" %>
+<%@ page import="com.example.proyecto_iweb.models.beans.Cuentas" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% ArrayList<EmpleadosTabla> listaEmpleados = (ArrayList<EmpleadosTabla>) request.getAttribute("listaEmpleados");
+%>
+<% ArrayList<Cuentas> listaCuentas = (ArrayList<Cuentas>) request.getAttribute("listaCuentas");
 %>
 <html>
 <head>
@@ -12,12 +15,12 @@
     <title>JA-VAGOS</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <link rel="icon" href="pestania.png">
+    <link rel="icon" href="img/sistema/pestania.png">
 
     <!-- Estilos CSS -->
     <!--Importando estilos CSS-->
-    <link rel="stylesheet" href="/estilos/usuario/filtros.css">
-    <link rel="stylesheet" href="/estilos/usuario.css">
+    <link rel="stylesheet" href="estilos/usuario/filtros.css">
+    <link rel="stylesheet" href="estilos/usuario.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -26,12 +29,12 @@
             rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -42,18 +45,12 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="indexManagerOficial.html" class="logo d-flex align-items-center">
-            <img src="logo.png" alt="">
+            <img src="img/sistema/logoUsuario.png" alt="">
             <span class="d-none d-lg-block">JA-VAGOS</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
-    </div><!-- End Search Bar -->
+
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
@@ -207,14 +204,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="indexManagerOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/usuarioManager">
                 <i class="bi bi-person-circle"></i>
                 <span>Usuarios</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link text-warning" href="#">
+            <a class="nav-link text-warning" href="<%=request.getContextPath()%>/empleados">
                 <i class="bi bi-person-bounding-box text-warning"></i>
                 <span>Administradores</span>
             </a>
@@ -222,7 +219,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="juegosManagerOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/JuegosManager">
                 <i class="bi bi-playstation"></i>
                 <span>Juegos</span>
             </a>
@@ -281,7 +278,7 @@
                     <td><%=e.getDineroGanado()%></td>
                     <td><%=e.getDineroGastado()%></td>
                     <td>
-                        <a href="#" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Despedir</a>
+                        <a href="" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Despedir</a>
                     </td>
                 </tr>
                 <% } %>

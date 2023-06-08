@@ -1,11 +1,7 @@
-<%@ page import="java.util.ArrayList" %>
+<!--NO olvidar los enlaces-->
 <%@ page import="com.example.proyecto_iweb.models.beans.Juegos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<Juegos> listaJuegos = (ArrayList<Juegos>) request.getAttribute("listaManager");
-%>
-
-<html lang="en">
-
+<html>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -13,12 +9,12 @@
   <title>JA-VAGOS</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-  <link rel="icon" href="pestania.png">
+  <link rel="icon" href="img/sistema/pestania.png">
 
   <!-- Estilos CSS -->
   <!--Importando estilos CSS-->
   <link rel="stylesheet" href="estilos/usuario/filtros.css">
-  <link rel="stylesheet" href="estilos/usuario.css">
+  <link rel="stylesheet" href="estilos/usuario/usuario.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -34,27 +30,31 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!--Estilos para pie de paginad de listas-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
 </head>
-
 <body>
-
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center bg-warning">
+<!-- ======= Cabecera ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center bg-danger">
 
   <div class="d-flex align-items-center justify-content-between">
-    <a href="indexManagerOficial.html" class="logo d-flex align-items-center">
-      <img src="logo.png" alt="">
-      <span class="d-none d-lg-block">JA-VAGOS</span>
+    <a href="#" class="logo d-flex align-items-center">
+      <img src="../img/sistema/logoUsuario.png" alt="">
+      <span class="d-none d-lg-block text-light">JA-VAGOS</span>
     </a>
-    <i class="bi bi-list toggle-sidebar-btn"></i>
   </div>
 
-  <div class="search-bar">
+  <div class="search-bar mt-3">
     <form class="search-form d-flex align-items-center" method="POST" action="#">
       <input type="text" name="query" placeholder="Search" title="Enter search keyword">
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
-  </div><!-- End Search Bar -->
+  </div>
 
   <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">
@@ -68,16 +68,17 @@
 
       <!-- ICONO DE TIENDA Y NOTIFICACIÓN-->
 
+
       <li class="nav-item dropdown">
 
         <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-          <i class="bi bi-chat-left-text"></i>
-          <span class="badge bg-danger badge-number">3</span>
+          <i class="bi bi-chat-left-text text-light"></i>
+          <span class="badge bg-success badge-number">2</span>
         </a><!-- End Messages Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
           <li class="dropdown-header">
-            Tienes 3 mensajes nuevos ! ! !
+            Tienes 2 mensajes nuevos ! ! !
             <!--
             <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todo</span></a>
             -->
@@ -114,22 +115,12 @@
             <hr class="dropdown-divider">
           </li>
 
-          <li class="message-item">
-            <a href="#">
-              <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-              <div>
-                <h4>David Muldon</h4>
-                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                <p>8 hrs. ago</p>
-              </div>
-            </a>
-          </li>
           <li>
             <hr class="dropdown-divider">
           </li>
 
           <li class="dropdown-footer">
-            <a href="notificacionesManagerOficial.html">Ver todo los mensajes</a>
+            <a href="notificacionesAdminOficial.html">Ver todos los mensajes</a>
           </li>
 
         </ul><!-- End Messages Dropdown Items -->
@@ -138,24 +129,31 @@
 
 
 
+
+
+
+
+
+
+
       <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="/img/manager/manager1.jpg" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2">L. Stuardo</span>
-        </a><!-- End Profile Iamge Icon -->
+          <img src="../img/administrador/admin1.png" alt="Profile" class="rounded-circle">
+          <span class="d-none d-md-block dropdown-toggle ps-2 text-light">B. Chavez</span>
+        </a>
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>L. Stuardo</h6>
-            <span>Manager</span>
+            <h6>B. Chavez</h6>
+            <span>Administrador</span>
           </li>
           <li>
             <hr class="dropdown-divider">
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="miPerfilManagerOficial.html">
+            <a class="dropdown-item d-flex align-items-center" href="miPerfilAdminOficial.html">
               <i class="bi bi-person"></i>
               <span>Mi Perfil</span>
             </a>
@@ -165,7 +163,7 @@
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="miPerfilManagerOficial.html">
+            <a class="dropdown-item d-flex align-items-center" href="miPerfilAdminOficial.html">
               <i class="bi bi-gear"></i>
               <span>Configuración</span>
             </a>
@@ -188,150 +186,173 @@
     </ul>
   </nav><!-- End Icons Navigation -->
 
-</header><!-- End Header -->
+</header>
+<!-- End Cabecera -->
 
+<!--------------------------------------------------------------------------------------------------------------------->
 
-<!--ACABO EL HEADER-->
-
-
-
-
-
-<!-- ======= Sidebar ======= -->
+<!-- ======= Barra Lateral ======= -->
 <aside id="sidebar" class="sidebar">
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="<%=request.getContextPath()%>/usuarioManager">
-        <i class="bi bi-person-circle"></i>
-        <span>Usuarios</span>
+      <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet">
+        <i class="bi bi-grid"></i>
+        <span>Disponibles</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="<%=request.getContextPath()%>/empleados">
-        <i class="bi bi-person-bounding-box"></i>
-        <span>Administradores</span>
+      <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminServlet">
+        <i class="bi bi-arrow-up-square"></i>
+        <span>Reservas y juegos comprados</span>
       </a>
-    </li><!-- End Profile Page Nav -->
+    </li>
+
 
 
     <li class="nav-item">
-      <a class="nav-link text-warning" href="<%=request.getContextPath()%>/JuegosManager">
-        <i class="bi bi-playstation text-warning"></i>
-        <span>Juegos</span>
+      <a class="nav-link text-danger" href="#">
+        <i class="bi bi-exclamation-square text-danger"></i>
+        <span>Ofertas</span>
       </a>
-    </li><!-- End F.A.Q Page Nav -->
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bag"></i><span>Juegos vendidos</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="juegosNuevosAdminOficial.html">
+            <i class="bi bi-circle"></i><span>Nuevo</span>
+          </a>
+        </li>
+        <li>
+          <a href="juegosExistentesAdminOficial.html">
+            <i class="bi bi-circle"></i><span>Existente</span>
+          </a>
+        </li>
+        <li>
+          <a href="juegosColaAdminOficial.html">
+            <i class="bi bi-circle"></i><span>Cola</span>
+          </a>
+        </li>
+      </ul>
+    </li>
 
   </ul>
 
-</aside><!-- End Sidebar-->
+
+</aside>
+<!-- ======= End Barra Lateral ======= -->
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
 
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Lista de todos los juegos del catálogo</h1>
+    <h1>Crear juego</h1>
   </div>
 
-  <section class="section faq">
-    <div class="row">
-      <!-- AQUI VAN LOS FILTROS DE CATEGORIAS-->
-      <div class="col-lg-12">
-        <div class="filtros">
+  <div class="container">
+    <form method="POST" action="<%=request.getContextPath()%>/AdminJuegoServlet">
 
-          <form action="">
-            <select name="" id="">
-              <option disabled selected="">Categoría</option>
-              <option value="">Acción</option>
-              <option value="categoriaTerrorManagerOficial.html">
-                <a href="categoriaTerrorManagerOficial.html">Terror</a>
-              </option>
-              <option value="">Arcade</option>
-              <option value="">Deporte</option>
-            </select>
-          </form>
+      <div class="mb-3">
+        <label for="idJuegos">Juego ID</label>
+        <p>No permitido de 100-120</p>
+        <input type="text" class="form-control" name="idJuegos" id="idJuegos">
+      </div>
 
-          <form action="">
-            <select name="" id="">
-              <option disabled selected="">Consola</option>
-              <option value="">X BOX</option>
-              <option value="">Play Station</option>
-              <option value="">PC</option>
-            </select>
-          </form>
+      <div class="mb-3">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" name="nombre" id="nombre">
+      </div>
+
+      <div class="mb-3">
+        <label for="descripcion">Descripción</label>
+        <input type="text" class="form-control" name="descripcion" id="descripcion">
+      </div>
+
+      <div class="mb-3">
+        <label for="precio">Precio</label>
+        <input type="text" class="form-control" name="precio" id="precio">
+      </div>
+
+      <div class="mb-3">
+        <label for="descuento">Descuento</label>
+        <input type="text" class="form-control" name="descuento" id="descuento">
+      </div>
+
+      <div class="mb-3">
+        <label for="stock">Stock</label>
+        <input type="text" class="form-control" name="stock" id="stock">
+      </div>
 
 
 
-          <form action="">
-            <select name="" id="">
-              <option disabled selected="">TOP</option>
-              <option value="">Menos vendidos</option>
-              <option value="">TOP5</option>
-
-            </select>
-          </form>
-
+      <div class="input-group mb-3">
+        <label for="precio">Categoría</label>
+        <div class="col-12">
+          <select class="form-select" aria-label="Combo Box">
+            <option selected></option>
+            <option value="1">Aventura</option>
+            <option value="2">Acción</option>
+            <option value="3">Deporte</option>
+          </select>
         </div>
       </div>
 
-      <div class="col-lg-12">
-
-        <!--DENTRO DE UN DIV-->
-        <div class="container">
-          <div class="row">
-            <% for (Juegos j : listaJuegos) { %>
-            <div class="col-4">
-              <div>
-                <div class="card" style="width: 18rem; height: 100%;">
-                  <img src="<%=j.getFoto()%>" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title"><%=j.getNombre()%></h5>
-                    <a onclick="return confirm('Esta seguro de desea retirar el juego')" class="btn btn-danger"
-                       href="<%=request.getContextPath()%>/JuegosManager?a=eliminar&id=<%=j.getIdJuegos()%>">Retirar juego</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <% } %>
-          </div>
-
-
-
-          <!--MODAL DE ADVERTENCIA PARA RETIRAR JUEGO DEL CATALOGO-->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Alerta de juego</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>¿Está seguro de eliminar el juego del catálogo?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary">Sí, eliminar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
+      <div class="input-group mb-3">
+        <label for="precio">Consola</label>
+        <div class="col-12">
+          <select class="form-select" aria-label="Combo Box">
+            <option selected></option>
+            <option value="1">Nintento Switch</option>
+            <option value="2">Xbox X</option>
+            <option value="3">PlayStation 5</option>
+            <option value="4">PC</option>
+          </select>
         </div>
-
       </div>
 
-      <div class="col-lg-12">
-
-        <!--DENTRO DE UN DIV-->
-
+      <div class="mb-3">
+        <label for="imagen">Dirección de imagen</label>
+        <h6>Sugerencia: img/juegos/nombre_juego.jpg (.png)</h6>
+        <input type="text" class="form-control" name="imagen" id="imagen">
       </div>
 
-    </div>
-  </section>
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Subir imagen</label>
+        <input class="form-control" type="file" id="formFile">
+      </div>
+
+      <div class="mb-3">
+        <label for="retirar_juego">Retirar juego</label>
+        <h6>NOTA: Ingresar el valor de "0", caso contrario sera despedido.</h6>
+        <input type="text" class="form-control" name="retirar_juego" id="retirar_juego">
+      </div>
 
 
-</main><!-- End #main -->
+      <div class="mb-3">
+        <label for="juego_sugerido">Juego sugerido</label>
+        <h6>NOTA: Ingresar el valor de "0", caso contrario sera despedido.</h6>
+        <input type="text" class="form-control" name="juego_sugerido" id="juego_sugerido">
+      </div>
+
+
+      <a class="btn btn-danger" href="<%=request.getContextPath()%>/AdminJuegoServlet">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+  </div>
+
+</main>
+
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
 
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
@@ -451,27 +472,14 @@
   <div class="credits">
     Designed by <a href="#">Ja-Vagos</a>
   </div>
-</footer><!-- End Footer -->
+</footer>
+<!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
-
-<!-- Vendor JS Files -->
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/chart.umd.js"></script>
-<script src="assets/vendor/echarts/echarts.min.js"></script>
-<script src="assets/vendor/quill/quill.min.js"></script>
-<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-
-
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
 <script src="assets/js/lista.js"></script>
-
 </body>
-
 </html>

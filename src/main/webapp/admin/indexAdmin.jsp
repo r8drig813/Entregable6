@@ -188,12 +188,7 @@
     </nav><!-- End Icons Navigation -->
 
 </header><!-- End Header -->
-
-
 <!--ACABO EL HEADER-->
-
-
-
 
 
 <!-- ======= Sidebar ======= -->
@@ -206,19 +201,19 @@
                 <i class="bi bi-grid text-danger"></i>
                 <span>Disponibles</span>
             </a>
-        </li><!-- End Dashboard Nav -->
+        </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="reservasYcompradosAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminServlet">
                 <i class="bi bi-arrow-up-square"></i>
                 <span>Reservas y juegos comprados</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
 
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="ofertasAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet?a=Ofertas">
                 <i class="bi bi-exclamation-square"></i>
                 <span>Ofertas</span>
             </a>
@@ -230,17 +225,17 @@
             </a>
             <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="juegosNuevosAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=nuevos">
                         <i class="bi bi-circle"></i><span>Nuevo</span>
                     </a>
                 </li>
                 <li>
-                    <a href="juegosExistentesAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=existentes">
                         <i class="bi bi-circle"></i><span>Existente</span>
                     </a>
                 </li>
                 <li>
-                    <a href="juegosColaAdminOficial.html">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=listarcola" class="text-danger">
                         <i class="bi bi-circle"></i><span>Cola</span>
                     </a>
                 </li>
@@ -253,13 +248,13 @@
 </aside><!-- End Sidebar-->
 
 <main id="main" class="main">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-10">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
         <% for (Juegos j : lista) { %>
         <div class="card mb-10" style="max-width: 1500px;">
             <div class="row g-0">
                 <div class="col-md-5">
-                    <img src="/img/juegos/juego1.jpg" class="img-fluid rounded-start" alt="...">
+                    <img src="<%=j.getFoto()%>" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
@@ -267,20 +262,20 @@
                         <p class="card-text"><%=j.getDescripcion()%></p>
                         <p class="card-text">Precio: <%=j.getPrecio()%></p>
                     </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#miVentanaEmergente">
-                        Editar
-                    </button>
-                    <a href="#" type="button" class="btn btn-danger" data-bs-toggle="modal"
-                       data-bs-target="#exampleModal">Eliminar</a>
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=Editar&id=<%=j.getIdJuegos()%>" class="btn btn-primary ml-5">Editar</a>
+                    <a onclick="return confirm('Esta seguro de desea eliminar el juego')" class="btn btn-danger"
+                        href="<%=request.getContextPath()%>/AdminJuegoServlet?a=eliminar&id=<%=j.getIdJuegos()%>">Eliminar</a>
                     <br>
                 </div>
             </div>
         </div>
         <% } %>
     </div>
-    <div class="col-lg-1"></div>
-</main><!-- End #main -->
+    <div class="col-md-1">
+        <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=crear" class="btn btn-danger">+</a>
+        <p>Añadir juego</p>
+    </div>
+</main>
 
 
 <!-- ======= Footer ======= -->

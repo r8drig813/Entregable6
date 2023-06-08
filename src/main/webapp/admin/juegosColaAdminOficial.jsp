@@ -196,21 +196,21 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="indexAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet">
                 <i class="bi bi-grid"></i>
                 <span>Disponibles</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="reservasYcompradosAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminServlet">
                 <i class="bi bi-arrow-up-square"></i>
                 <span>Reservas y juegos comprados</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="ofertasAdminOficial.html">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/AdminJuegoServlet?a=Ofertas">
                 <i class="bi bi-exclamation-square"></i>
                 <span>Ofertas</span>
             </a>
@@ -222,17 +222,17 @@
             </a>
             <ul id="icons-nav" class="nav-content collapsed text-danger" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="<%=request.getContextPath()%>/JuegosServlet?a=nuevos">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=nuevos">
                         <i class="bi bi-circle"></i><span>Nuevo</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/JuegosServlet?a=existentes">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=existentes">
                         <i class="bi bi-circle"></i><span>Existente</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/JuegosServlet?a=listarcola" class="text-danger">
+                    <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=listarcola" class="text-danger">
                         <i class="bi bi-circle text-danger"></i><span>Cola</span>
                     </a>
                 </li>
@@ -268,9 +268,9 @@
                 <td>Nuevo</td>
                 <td>
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary m-1">Aceptar</a>
-                        <a href="#" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">No aceptar</a>
-                        <a href="#" class="btn btn-danger m-1">Rechazar</a>
+                        <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=cambiarestadoaceptar&id=<%=j.getIdJuegos()%>" class="btn btn-primary m-1">Aceptar</a>
+                        <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=cambiarestadonoaceptar&id=<%=j.getIdJuegos()%>" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">No aceptar</a>
+                        <a href="<%=request.getContextPath()%>/AdminJuegoServlet?a=cambiarestadorechazar&id=<%=j.getIdJuegos()%>" class="btn btn-danger m-1">Rechazar</a>
 
                     </div>
                     <!--MODAL DE ADVERTENCIA PARA TODOS-->
@@ -289,7 +289,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-success">Enviar</button>
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Enviar</button>
                                 </div>
                             </div>
                         </div>
