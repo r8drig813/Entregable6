@@ -95,6 +95,7 @@ public class JuegosServlet extends HttpServlet {
                 request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.setAttribute("perfil", cuentasDaos.perfil());
                 request.getRequestDispatcher("usuario/notificacionesUsuarioOficial.jsp").forward(request,response);
+                break;
             case "agregar":
                 request.getRequestDispatcher("usuario/agregarjuegonuevo.jsp").forward(request, response);
                 break;
@@ -104,7 +105,7 @@ public class JuegosServlet extends HttpServlet {
                 request.setAttribute("perfil", cuentasDaos.perfil());
                 request.setAttribute("listar",juegosDaos.listarOfertas());
                 request.getRequestDispatcher("usuario/ofertasUsuarioOficial.jsp").forward(request,response);
-
+                break;
         }
     }
 

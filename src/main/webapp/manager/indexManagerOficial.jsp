@@ -47,15 +47,14 @@
             <img src="logo.png" alt="">
             <span class="d-none d-lg-block">JA-VAGOS</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
+    <!--<div class="search-bar">
         <form class="search-form d-flex align-items-center" method="POST" action="#">
             <input type="text" name="query" placeholder="Search" title="Enter search keyword">
             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
-    </div><!-- End Search Bar -->
+    </div>--><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
@@ -272,8 +271,8 @@
             <td><%=u.getDirecion()%></td>
             <td><%=u.getDesabilitado()%></td>
             <td>
-                <button type="button" class="btn btn-danger">Baneo</button>
-                <button type="button" class="btn btn-success">Desbaneo</button>
+                <button href="<%=request.getContextPath()%>/usuarioManager?a=baneo&id=<%=u.getIdCuentas()%>" type="button" class="btn btn-danger">Baneo</button>
+                <button href="<%=request.getContextPath()%>/usuarioManager?a=desbaneo&id=<%=u.getIdCuentas()%>" type="button" class="btn btn-success">Desbaneo</button>
                 <button type="button" class="btn btn-primary">Descargar</button>
             </td>
         </tr>

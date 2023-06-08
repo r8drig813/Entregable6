@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyecto_iweb.models.beans.Juegos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<Juegos> listaJuegos = (ArrayList<Juegos>) request.getAttribute("listaJuegos");
+<% ArrayList<Juegos> listaJuegos = (ArrayList<Juegos>) request.getAttribute("listaManager");
 %>
 
 <html lang="en">
@@ -282,12 +282,13 @@
           <div class="row">
             <% for (Juegos j : listaJuegos) { %>
             <div class="col-4">
-              <div class="disponibleUsuario">
+              <div>
                 <div class="card" style="width: 18rem; height: 100%;">
                   <img src="<%=j.getFoto()%>" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title"><%=j.getNombre()%></h5>
-                    <a href="#" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Retirar juego</a>
+                    <a onclick="return confirm('Esta seguro de desea retirar el juego')" class="btn btn-danger"
+                       href="<%=request.getContextPath()%>/JuegosManager?a=eliminar&id=<%=j.getIdJuegos()%>">Retirar juego</a>
                   </div>
                 </div>
               </div>

@@ -1,8 +1,11 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyecto_iweb.models.beans.EmpleadosTabla" %>
+<%@ page import="com.example.proyecto_iweb.models.beans.Cuentas" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% ArrayList<EmpleadosTabla> listaEmpleados = (ArrayList<EmpleadosTabla>) request.getAttribute("listaEmpleados");
+%>
+<% ArrayList<Cuentas> listaCuentas = (ArrayList<Cuentas>) request.getAttribute("listaCuentas");
 %>
 <html>
 <head>
@@ -45,15 +48,9 @@
             <img src="img/sistema/logoUsuario.png" alt="">
             <span class="d-none d-lg-block">JA-VAGOS</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
-    </div><!-- End Search Bar -->
+
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
@@ -281,7 +278,7 @@
                     <td><%=e.getDineroGanado()%></td>
                     <td><%=e.getDineroGastado()%></td>
                     <td>
-                        <a href="#" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Despedir</a>
+                        <a href="" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Despedir</a>
                     </td>
                 </tr>
                 <% } %>

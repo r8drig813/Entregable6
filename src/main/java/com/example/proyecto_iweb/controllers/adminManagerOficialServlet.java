@@ -19,10 +19,27 @@ public class adminManagerOficialServlet extends HttpServlet {
         response.setContentType("text/html");
 
         EmpleadosTablaDaos employeeDao = new EmpleadosTablaDaos();
-        request.setAttribute("listaEmpleados",employeeDao.listarEmpleados());
+        CuentasDaos cuentasDaos = new CuentasDaos();
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("manager/adminManagerOficial.jsp");
-        requestDispatcher.forward(request,response);
+        String action = request.getParameter("a") == null ? "ListaEmpleados" : request.getParameter("a");
+
+        switch (action){
+
+            case "ListaEmpleados":
+                request.setAttribute("listaEmpleados",employeeDao.listarEmpleados());
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("manager/adminManagerOficial.jsp");
+                requestDispatcher.forward(request,response);
+                break;
+
+            case "eliminar":
+                String id2 = request.getParameter("id");
+                cuentasDaos.deshabilitarCuenta(id2);
+                response.sendRedirect(request.getContextPath() + "/empleados");
+                break;
+
+        }
+
+
     }
 
     @Override
