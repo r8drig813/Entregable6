@@ -1,10 +1,12 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyecto_iweb.models.beans.Juegos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<Juegos> listaJuegos = (ArrayList<Juegos>) request.getAttribute("listaJuegos");
+<% ArrayList<Juegos> listaManager = (ArrayList<Juegos>) request.getAttribute("listaManager");
 %>
 
-<html lang="en">
+
+
+<html>
 
 <head>
   <meta charset="utf-8">
@@ -13,7 +15,7 @@
   <title>JA-VAGOS</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-  <link rel="icon" href="pestania.png">
+  <link rel="icon" href="img/sistema/pestania.png">
 
   <!-- Estilos CSS -->
   <!--Importando estilos CSS-->
@@ -22,9 +24,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link
-          href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-          rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,10 +43,9 @@
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="indexManagerOficial.html" class="logo d-flex align-items-center">
-      <img src="logo.png" alt="">
+      <img src="img/sistema/logoUsuario.png" alt="">
       <span class="d-none d-lg-block">JA-VAGOS</span>
     </a>
-    <i class="bi bi-list toggle-sidebar-btn"></i>
   </div>
 
   <div class="search-bar">
@@ -234,100 +233,93 @@
     <h1>Lista de todos los juegos del catálogo</h1>
   </div>
 
-  <section class="section faq">
-    <div class="row">
-      <!-- AQUI VAN LOS FILTROS DE CATEGORIAS-->
-      <div class="col-lg-12">
-        <div class="filtros">
 
-          <form action="">
-            <select name="" id="">
-              <option disabled selected="">Categoría</option>
-              <option value="">Acción</option>
-              <option value="categoriaTerrorManagerOficial.html">
-                <a href="categoriaTerrorManagerOficial.html">Terror</a>
-              </option>
-              <option value="">Arcade</option>
-              <option value="">Deporte</option>
-            </select>
-          </form>
+  <div class="row">
+    <!-- AQUI VAN LOS FILTROS DE CATEGORIAS-->
+    <div class="col-lg-12">
+      <div class="filtros">
 
-          <form action="">
-            <select name="" id="">
-              <option disabled selected="">Consola</option>
-              <option value="">X BOX</option>
-              <option value="">Play Station</option>
-              <option value="">PC</option>
-            </select>
-          </form>
+        <form action="">
+          <select name="" id="">
+            <option disabled selected="">Categoría</option>
+            <option value="">Acción</option>
+            <option value="categoriaTerrorManagerOficial.html">
+              <a href="categoriaTerrorManagerOficial.html">Terror</a>
+            </option>
+            <option value="">Arcade</option>
+            <option value="">Deporte</option>
+          </select>
+        </form>
 
+        <form action="">
+          <select name="" id="">
+            <option disabled selected="">Consola</option>
+            <option value="">X BOX</option>
+            <option value="">Play Station</option>
+            <option value="">PC</option>
+          </select>
+        </form>
 
+        <form action="">
+          <select name="" id="">
+            <option disabled selected="">TOP</option>
+            <option value="">Menos vendidos</option>
+            <option value="">TOP 5</option>
 
-          <form action="">
-            <select name="" id="">
-              <option disabled selected="">TOP</option>
-              <option value="">Menos vendidos</option>
-              <option value="">TOP5</option>
-
-            </select>
-          </form>
-
-        </div>
-      </div>
-
-      <div class="col-lg-12">
-
-        <!--DENTRO DE UN DIV-->
-        <div class="container">
-          <div class="row">
-            <% for (Juegos j : listaJuegos) { %>
-            <div class="col-4">
-              <div class="disponibleUsuario">
-                <div class="card" style="width: 18rem; height: 100%;">
-                  <img src="<%=j.getFoto()%>" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title"><%=j.getNombre()%></h5>
-                    <a href="#" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Retirar juego</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <% } %>
-          </div>
-
-
-
-          <!--MODAL DE ADVERTENCIA PARA RETIRAR JUEGO DEL CATALOGO-->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Alerta de juego</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>¿Está seguro de eliminar el juego del catálogo?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary">Sí, eliminar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+          </select>
+        </form>
 
       </div>
-
-      <div class="col-lg-12">
-
-        <!--DENTRO DE UN DIV-->
-
-      </div>
-
     </div>
-  </section>
+
+    <!--DENTRO DE UN DIV-->
+    <div class="container">
+      <div class="row">
+        <% for (Juegos j : listaManager) { %>
+        <div class="col-4">
+          <div>
+            <div class="card" style="width: 18rem; height: 100%;">
+              <img src="<%=j.getFoto()%>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= j.getNombre() %></h5>
+                <a href="#" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Retirar juego</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+
+
+
+    <!--MODAL DE ADVERTENCIA PARA RETIRAR JUEGO DEL CATALOGO-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Alerta de juego</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro de eliminar el juego del catálogo?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary">Sí, eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
 
 
 </main><!-- End #main -->
