@@ -3,6 +3,7 @@ package com.example.proyecto_iweb.models.daos;
 import com.example.proyecto_iweb.models.beans.ComprasVentas;
 import com.example.proyecto_iweb.models.beans.Estados;
 import com.example.proyecto_iweb.models.beans.Juegos;
+import com.example.proyecto_iweb.models.beans.JuegosVendidosNuevos;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -290,7 +291,7 @@ public class JuegosDaos {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String sql1 = "select * from juegos where descuento != 0";
+        String sql1 = "select * from juegos where descuento > 0";
         String url = "jdbc:mysql://localhost:3306/mydb";
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              Statement stmt = connection.createStatement();
@@ -301,6 +302,7 @@ public class JuegosDaos {
 
                 // Obtenemos los valores
                 juegoOferta.setNombre(resultSet.getString(2));
+                juegoOferta.setFoto(resultSet.getString(7));
                 juegoOferta.setPrecio(resultSet.getInt(4));
                 juegoOferta.setDescuento(resultSet.getInt(5));
                 juegoOferta.setStock(resultSet.getInt(6));
@@ -481,6 +483,33 @@ public class JuegosDaos {
         return lista;
     }
 
+    // Agregar Juegos Para vender
+
+    public void guardar(JuegosVendidosNuevos juegosVendidosNuevos) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String sql = "INSERT INTO compras_ventas (precio_total,fecha_cv,descripcionEstado,cantidad,Estados_idEstados,Juegos_idJuegos,compra_o_venta,descripcionJuego) VALUES (?,?,?,?,1,106,1,null)";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1, juegosVendidosNuevos.getPrecio());
+            pstmt.setString(2, juegosVendidosNuevos.getFecha_sudida());
+            pstmt.setString(3, juegosVendidosNuevos.getDescripcion());
+            pstmt.setInt(4, juegosVendidosNuevos.getCantidad());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //Lista de Ofertas
 
     /*-------------------ADMIN----------------------------*/
 

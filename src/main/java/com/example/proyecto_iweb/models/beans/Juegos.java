@@ -13,7 +13,9 @@ public class Juegos {
      private String foto;
      private boolean retirar_juego;
      private boolean juego_sugerido;
-    private String estado;
+     private String estado;
+     private String consola;
+     private String genero;
 
     public String getEstado() {
         return estado;

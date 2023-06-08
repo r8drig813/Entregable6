@@ -17,7 +17,7 @@
     <title>JA-VAGOS</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <link rel="icon" href="pestania.png">
+    <link rel="icon" href="img/sistema/pestania.png">
 
     <!-- Estilos CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -44,16 +44,15 @@
 <header id="header" class="header fixed-top d-flex align-items-center bg-primary">
     <div class="d-flex align-items-center justify-content-between">
         <a href="<%=request.getContextPath()%>/JuegosServlet?a=listar" class="logo d-flex align-items-center">
-            <img src="/logoUsuario.png" alt="">
+            <img src="img/sistema/logoUsuario.png" alt="">
             <span class="d-none d-lg-block text-light">JA-VAGOS</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn text-light"></i>
     </div>
 
     <div class="search-bar mt-3">
         <form class="search-form d-flex align-items-center" method="post" action="<%=request.getContextPath()%>/JuegosServlet?p=b1">
             <input type="text" name="buscador" placeholder="Search" title="Enter search keyword">
-            <button type="submit" title="Buscar Juegos"><i class="bi bi-search"></i></button>
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
     </div>
 
@@ -68,7 +67,7 @@
 
             <!-- ICONO DE TIENDA Y NOTIFICACIÓN-->
             <li class="nav-item">
-                <a class="nav-link nav-icon" href="carrito.jsp">
+                <a class="nav-link nav-icon" href="usuario/carrito.jsp">
                     <i class="bi bi-cart text-light"></i>
                     <span class="badge bg-success badge-number"></span>
                 </a>
@@ -188,6 +187,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<%=request.getContextPath()%>/JuegosServlet?a=ofertas">
+                <i class="bi bi-shop"></i>
+                <span>Ofertas</span>
+            </a>
+        </li>
+
     </ul>
 
 </aside>
@@ -227,10 +233,6 @@
                         <option value="">100-150</option>
                     </select>
                 </form>
-
-                <div class="botonOfertas">
-                    <button type="button" class="btn btn-light border rounded-3">Ofertas</button>
-                </div>
             </div>
         </div>
 

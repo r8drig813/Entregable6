@@ -46,7 +46,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center bg-primary">
     <div class="d-flex align-items-center justify-content-between">
         <a href="<%=request.getContextPath()%>/JuegosServlet?a=listar" class="logo d-flex align-items-center">
-            <img src="/logoUsuario.png" alt="">
+            <img src="img/sistema/logoUsuario.png" alt="">
             <span class="d-none d-lg-block text-light">JA-VAGOS</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn text-light"></i>
@@ -70,7 +70,7 @@
 
             <!-- ICONO DE TIENDA Y NOTIFICACIÓN-->
             <li class="nav-item">
-                <a class="nav-link nav-icon" href="carrito.jsp">
+                <a class="nav-link nav-icon" href="usuario/carrito.jsp">
                     <i class="bi bi-cart text-light"></i>
                     <span class="badge bg-success badge-number"></span>
                 </a>

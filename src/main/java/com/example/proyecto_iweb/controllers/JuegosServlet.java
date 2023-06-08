@@ -2,7 +2,7 @@ package com.example.proyecto_iweb.controllers;
 
 import java.io.*;
 
-import com.example.proyecto_iweb.models.beans.Juegos;
+import com.example.proyecto_iweb.models.beans.JuegosVendidosNuevos;
 import com.example.proyecto_iweb.models.daos.CuentasDaos;
 import com.example.proyecto_iweb.models.daos.JuegosDaos;
 import jakarta.servlet.RequestDispatcher;
@@ -112,6 +112,16 @@ public class JuegosServlet extends HttpServlet {
                 request.setAttribute("lista4",juegosDaos.listarNotificaciones());
                 request.setAttribute("perfil", cuentasDaos.perfil());
                 request.getRequestDispatcher("usuario/notificacionesUsuarioOficial.jsp").forward(request,response);
+            case "agregar":
+                request.getRequestDispatcher("usuario/agregarjuegonuevo.jsp").forward(request, response);
+                break;
+            case "ofertas":
+                request.setAttribute("lista2", juegosDaos.listarVendidos());
+                request.setAttribute("lista4",juegosDaos.listarNotificaciones());
+                request.setAttribute("perfil", cuentasDaos.perfil());
+                request.setAttribute("listar",juegosDaos.listarOfertas());
+                request.getRequestDispatcher("usuario/ofertasUsuarioOficial.jsp").forward(request,response);
+
         }
     }
 
@@ -133,8 +143,40 @@ public class JuegosServlet extends HttpServlet {
                 request.setAttribute("lista", juegosDaos.buscarPorTitle(textoBuscar1));
                 request.getRequestDispatcher("usuario/indexUsuarioOficial.jsp").forward(request, response);
                 break;
+            case "c":
+                JuegosVendidosNuevos juegosVendidosNuevos = parseJuegosVendidosNuevos(request);
+                juegosDaos.guardar(juegosVendidosNuevos);
+
+                response.sendRedirect(request.getContextPath() + "/JuegosServlet?a=listar1");
+                break;
 
         }
 
+    }
+
+    public JuegosVendidosNuevos parseJuegosVendidosNuevos(HttpServletRequest request) {
+
+        JuegosVendidosNuevos juegosVendidosNuevos = new JuegosVendidosNuevos();
+        //String nombre = request.getParameter("nombre");
+        String precio = request.getParameter("precio");
+        String descripcion = request.getParameter("descripcion");
+        String cantidad = request.getParameter("cantidad");
+        String fecha = request.getParameter("fecha");
+
+
+        try {
+
+            //juegosVendidosNuevos.setPrecio(Integer.parseInt(precio));
+            juegosVendidosNuevos.setPrecio(Integer.parseInt(precio));
+            juegosVendidosNuevos.setDescripcion(descripcion);
+            juegosVendidosNuevos.setCantidad(Integer.parseInt(cantidad));
+            juegosVendidosNuevos.setFecha_sudida(fecha);
+
+            return juegosVendidosNuevos;
+
+        } catch (NumberFormatException e) {
+
+        }
+        return juegosVendidosNuevos;
     }
 }

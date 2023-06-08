@@ -18,7 +18,8 @@
 --
 -- Table structure for table `compras_ventas`
 --
-
+CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `mydb`;
 DROP TABLE IF EXISTS `compras_ventas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
