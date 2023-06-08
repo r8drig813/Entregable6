@@ -44,7 +44,6 @@
         <img src="/logoUsuario.png" alt="">
         <span class="d-none d-lg-block text-light">JA-VAGOS</span>
       </a>
-      <i class="bi bi-list toggle-sidebar-btn text-light"></i>
     </div>
 
   <nav class="header-nav ms-auto">
@@ -58,7 +57,7 @@
 
       <!-- ICONO DE TIENDA Y NOTIFICACIÓN-->
       <li class="nav-item">
-        <a class="nav-link nav-icon" href="carrito.jsp">
+        <a class="nav-link nav-icon" href="usuario/carrito.jsp">
           <i class="bi bi-cart text-light"></i>
           <span class="badge bg-success badge-number"></span>
         </a>
@@ -176,7 +175,15 @@
         <i class="bi bi-shop"></i>
         <span>Comprados</span>
       </a>
-    </li><!-- End Contact Page Nav -->
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="<%=request.getContextPath()%>/JuegosServlet?a=ofertas">
+        <i class="bi bi-shop"></i>
+        <span>Ofertas</span>
+      </a>
+    </li>
+    <!-- End Contact Page Nav -->
 
   </ul>
 
@@ -199,7 +206,7 @@
       </div>
     </div>
     <div class="col-3">
-      <button type="button" class="btn btn-success">Agregar juego Nuevo</button>
+      <a class="btn btn-success" href="<%=request.getContextPath()%>/JuegosServlet?a=agregar">Agregar Juego Nuevo</a>
     </div>
   </div>
 
