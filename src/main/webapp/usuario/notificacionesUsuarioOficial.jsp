@@ -47,7 +47,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="<%=request.getContextPath()%>/JuegosServlet?a=listar" class="logo d-flex align-items-center">
-            <img src="img/sistema/logoUsuario.png" alt="">
+            <img src="logoUsuario.png" alt="">
             <span class="d-none d-lg-block text-light">JA-VAGOS</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn text-light"></i>
@@ -225,7 +225,7 @@
                     <%for (ComprasVentas cv : listaNotificaciones){%>
                     <div class="alert alert-primary" role="alert">
                         <p class="fw-bold" ><%=cv.getJuegos().getNombre()%></p>
-                       <p><%=cv.getDescripcionJuego()%></p>
+                        <p><%=cv.getDescripcionJuego()%></p>
 
                     </div>
                     <%}%>
