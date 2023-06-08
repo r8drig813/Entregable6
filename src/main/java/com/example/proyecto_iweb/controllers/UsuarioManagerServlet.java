@@ -18,10 +18,32 @@ public class UsuarioManagerServlet extends HttpServlet {
         response.setContentType("text/html");
 
         CuentasDaos employeeDao = new CuentasDaos();
-        request.setAttribute("listaUsuarios",employeeDao.listarCuentasUsuarios());
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("manager/indexManagerOficial.jsp");
-        requestDispatcher.forward(request,response);
+        String action = request.getParameter("a") == null ? "ListaUsuarios" : request.getParameter("a");
+
+
+
+        switch (action){
+
+            case "ListaUsuarios":
+                request.setAttribute("listaUsuarios",employeeDao.listarCuentasUsuarios());
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("manager/indexManagerOficial.jsp");
+                requestDispatcher.forward(request,response);
+                break;
+
+            case "baneo":
+                String id2 = request.getParameter("id");
+                employeeDao.deshabilitarCuenta(id2);
+                response.sendRedirect(request.getContextPath() + "/usuarioManager");
+                break;
+
+            case "desbaneo":
+                String id3 = request.getParameter("id");
+                employeeDao.habilitarCuenta(id3);
+                response.sendRedirect(request.getContextPath() + "/usuarioManager");
+                break;
+
+        }
     }
 
     @Override
