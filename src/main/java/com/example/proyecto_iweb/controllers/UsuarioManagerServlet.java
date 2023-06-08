@@ -20,7 +20,7 @@ public class UsuarioManagerServlet extends HttpServlet {
         CuentasDaos employeeDao = new CuentasDaos();
         request.setAttribute("listaUsuarios",employeeDao.listarCuentasUsuarios());
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("indexManagerOficial.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("manager/indexManagerOficial.jsp");
         requestDispatcher.forward(request,response);
     }
 

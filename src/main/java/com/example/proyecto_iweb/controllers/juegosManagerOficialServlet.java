@@ -19,9 +19,9 @@ public class juegosManagerOficialServlet extends HttpServlet {
 
         JuegosDaos juegosDaos = new JuegosDaos();
 
-        request.setAttribute("juegosManager", juegosDaos.listarJuegos());
-        request.getRequestDispatcher("manager/juegosManagerOficial.jsp").forward(request, response);
-
+        request.setAttribute("listaManager", juegosDaos.listarJuegos());
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("manager/juegosManagerOficial.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     @Override
